@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +7,103 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+        
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        /* Dark mode (default) */
+        .dark body {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        /* Light mode */
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        
+        /* Theme toggle button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 50;
+            background: rgba(39, 39, 42, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #3f3f46;
+            border-radius: 8px;
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(63, 63, 70, 0.9);
+            border-color: #52525b;
+        }
+        
+        .dark .theme-toggle {
+            background: rgba(39, 39, 42, 0.8);
+            border-color: #3f3f46;
+        }
+        
+        .theme-toggle {
+            background: rgba(228, 228, 231, 0.8);
+            border-color: #d4d4d8;
+        }
+        
+        .theme-icon {
+            width: 18px;
+            height: 18px;
+            color: #a1a1aa;
+        }
+        
+        .dark .theme-icon {
+            color: #a1a1aa;
+        }
+        
+        .theme-icon {
+            color: #52525b;
+        }
     </style>
+    <script>
+        // Initialize theme from localStorage or default to dark
+        (function() {
+            const theme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.classList.toggle('dark', theme === 'dark');
+        })();
+    </script>
 </head>
-<body class="bg-black text-white antialiased">
+<body class="antialiased">
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="theme-icon sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        </svg>
+        <svg class="theme-icon moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+    </button>
 
     <!-- Header -->
-    <div class="border-b border-zinc-800 bg-zinc-950">
+    <div class="border-b dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-50">
         <div class="max-w-[1400px] mx-auto px-8 py-12">
-            <h1 class="text-4xl font-bold text-white mb-2">Concentrated Roth Portfolio Analysis</h1>
-            <p class="text-zinc-400">Financial deep dives using Brian Feroldi's income statement framework</p>
+            <h1 class="text-4xl font-bold dark:text-white text-black mb-2">Concentrated Roth Portfolio Analysis</h1>
+            <p class="dark:text-zinc-400 text-zinc-600">Financial deep dives using Brian Feroldi's income statement framework</p>
             <div class="mt-4 flex items-center gap-3 text-sm">
                 <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full font-medium">21 Holdings</span>
-                <span class="text-zinc-600">•</span>
-                <span class="text-zinc-500">Updated: January 2026</span>
+                <span class="dark:text-zinc-600 text-zinc-400">•</span>
+                <span class="dark:text-zinc-500 text-zinc-600">Updated: January 2026</span>
             </div>
         </div>
     </div>
@@ -33,11 +116,11 @@
     </div>
 
     <!-- Footer -->
-    <div class="border-t border-zinc-800 bg-zinc-950 mt-12">
+    <div class="border-t dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-50 mt-12">
         <div class="max-w-[1400px] mx-auto px-8 py-6">
-            <div class="text-center text-sm text-zinc-500">
+            <div class="text-center text-sm dark:text-zinc-500 text-zinc-600">
                 <p class="mb-2">Framework: Brian Feroldi's Income Statement Analysis</p>
-                <p class="text-xs text-zinc-600">
+                <p class="text-xs dark:text-zinc-600 text-zinc-500">
                     Sources: SEC EDGAR (10-Q/10-K filings) • Not investment advice
                 </p>
             </div>
@@ -45,111 +128,147 @@
     </div>
 
     <script>
-        const portfolio =         {
-                  "IOT": {
-                            "name": "Samsara Inc",
-                            "symbol": "IOT",
-                            "sector": "IoT SaaS",
-                            "status": "completed"
-                  },
-                  "SNPS": {
-                            "name": "Synopsys Inc",
-                            "symbol": "SNPS",
-                            "sector": "Software",
-                            "status": "completed"
-                  },
-                  "AVGO": {
-                            "name": "Broadcom Inc",
-                            "symbol": "AVGO",
-                            "sector": "Semiconductors",
-                            "status": "completed"
-                  },
-                  "TER": {
-                            "name": "Teradyne",
-                            "symbol": "TER",
-                            "sector": "Test Equipment",
-                            "status": "completed"
-                  },
-                  "TSLA": {
-                            "name": "Tesla Inc",
-                            "symbol": "TSLA",
-                            "sector": "Auto/Energy",
-                            "status": "completed"
-                  },
-                  "LDOS": {
-                            "name": "Leidos Holdings",
-                            "symbol": "LDOS",
-                            "sector": "Defense/IT",
-                            "status": "completed"
-                  },
-                  "PANW": {
-                            "name": "Palo Alto Networks",
-                            "symbol": "PANW",
-                            "sector": "Cybersecurity",
-                            "status": "completed"
-                  },
-                  "NOC": {"name": "Northrop Grumman",
-                            "symbol": "NOC",
-                            "sector": "Aerospace/Defense", "status": "completed"},
-                  "LLY": {
-                            "name": "Eli Lilly & Co",
-                            "symbol": "LLY",
-                            "sector": "Pharmaceuticals"
-                  },
-                  "COF": {
-                            "name": "Capital One Financial",
-                            "symbol": "COF",
-                            "sector": "Financial Services"
-                  },
-                  "CNSWF": {
-                            "name": "Constellation Software",
-                            "symbol": "CNSWF",
-                            "sector": "Software"
-                  },
-                  "MSFT": {
-                            "name": "Microsoft Corp",
-                            "symbol": "MSFT",
-                            "sector": "Software/Cloud",
-                            "status": "completed"
-                  },
-                  "ORLY": {
-                            "name": "O'Reilly Automotive Inc",
-                            "symbol": "ORLY",
-                            "sector": "Retail"
-                  },
-                  "CBOE": {
-                            "name": "Cboe Global Markets",
-                            "symbol": "CBOE",
-                            "sector": "Exchanges"
-                  },
-                  "GOOGL": {"name": "Alphabet Inc",
-                            "symbol": "GOOGL",
-                            "sector": "Tech/Advertising", "status": "completed"},
-                  "AMZN": {"name": "Amazon.com Inc",
-                            "symbol": "AMZN",
-                            "sector": "E-commerce/Cloud", "status": "completed"},
-                  "COST": {
-                            "name": "Costco Wholesale Corp",
-                            "symbol": "COST",
-                            "sector": "Retail"
-                  },
-                  "TSM": {"name": "Taiwan Semiconductor",
-                            "symbol": "TSM",
-                            "sector": "Semiconductors", "status": "completed"},
-                  "CRWD": {
-                            "name": "CrowdStrike Holdings",
-                            "symbol": "CRWD",
-                            "sector": "Cybersecurity",
-                            "status": "completed"
-                  },
-                  "ISRG": {
-                            "name": "Intuitive Surgical Inc",
-                            "symbol": "ISRG",
-                            "sector": "Medical Devices"
-                  },
-                  "ASML": {"name": "ASML Holding",
-                            "symbol": "ASML",
-                            "sector": "Semiconductor Equipment", "status": "completed"}
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const sunIcon = document.querySelector('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+        
+        function updateThemeIcons() {
+            const isDark = html.classList.contains('dark');
+            sunIcon.style.display = isDark ? 'block' : 'none';
+            moonIcon.style.display = isDark ? 'none' : 'block';
+        }
+        
+        updateThemeIcons();
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const theme = html.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+            updateThemeIcons();
+        });
+
+        const portfolio = {
+            "IOT": {
+                "name": "Samsara Inc",
+                "symbol": "IOT",
+                "sector": "IoT SaaS",
+                "status": "completed"
+            },
+            "SNPS": {
+                "name": "Synopsys Inc",
+                "symbol": "SNPS",
+                "sector": "Software",
+                "status": "completed"
+            },
+            "AVGO": {
+                "name": "Broadcom Inc",
+                "symbol": "AVGO",
+                "sector": "Semiconductors",
+                "status": "completed"
+            },
+            "TER": {
+                "name": "Teradyne",
+                "symbol": "TER",
+                "sector": "Test Equipment",
+                "status": "completed"
+            },
+            "TSLA": {
+                "name": "Tesla Inc",
+                "symbol": "TSLA",
+                "sector": "Auto/Energy",
+                "status": "completed"
+            },
+            "LDOS": {
+                "name": "Leidos Holdings",
+                "symbol": "LDOS",
+                "sector": "Defense/IT",
+                "status": "completed"
+            },
+            "PANW": {
+                "name": "Palo Alto Networks",
+                "symbol": "PANW",
+                "sector": "Cybersecurity",
+                "status": "completed"
+            },
+            "NOC": {
+                "name": "Northrop Grumman",
+                "symbol": "NOC",
+                "sector": "Aerospace/Defense",
+                "status": "completed"
+            },
+            "LLY": {
+                "name": "Eli Lilly & Co",
+                "symbol": "LLY",
+                "sector": "Pharmaceuticals"
+            },
+            "COF": {
+                "name": "Capital One Financial",
+                "symbol": "COF",
+                "sector": "Financial Services"
+            },
+            "CNSWF": {
+                "name": "Constellation Software",
+                "symbol": "CNSWF",
+                "sector": "Software"
+            },
+            "MSFT": {
+                "name": "Microsoft Corp",
+                "symbol": "MSFT",
+                "sector": "Software/Cloud",
+                "status": "completed"
+            },
+            "ORLY": {
+                "name": "O'Reilly Automotive Inc",
+                "symbol": "ORLY",
+                "sector": "Retail"
+            },
+            "CBOE": {
+                "name": "Cboe Global Markets",
+                "symbol": "CBOE",
+                "sector": "Exchanges"
+            },
+            "GOOGL": {
+                "name": "Alphabet Inc",
+                "symbol": "GOOGL",
+                "sector": "Tech/Advertising",
+                "status": "completed"
+            },
+            "AMZN": {
+                "name": "Amazon.com Inc",
+                "symbol": "AMZN",
+                "sector": "E-commerce/Cloud",
+                "status": "completed"
+            },
+            "COST": {
+                "name": "Costco Wholesale Corp",
+                "symbol": "COST",
+                "sector": "Retail"
+            },
+            "TSM": {
+                "name": "Taiwan Semiconductor",
+                "symbol": "TSM",
+                "sector": "Semiconductors",
+                "status": "completed"
+            },
+            "CRWD": {
+                "name": "CrowdStrike Holdings",
+                "symbol": "CRWD",
+                "sector": "Cybersecurity",
+                "status": "completed"
+            },
+            "ISRG": {
+                "name": "Intuitive Surgical Inc",
+                "symbol": "ISRG",
+                "sector": "Medical Devices"
+            },
+            "ASML": {
+                "name": "ASML Holding",
+                "symbol": "ASML",
+                "sector": "Semiconductor Equipment",
+                "status": "completed"
+            }
         };
 
         const grid = document.getElementById('portfolioGrid');
@@ -158,8 +277,8 @@
             const card = document.createElement('div');
             const isCompleted = data.status === 'completed';
             
-            card.className = `bg-[#0e0e11] border border-zinc-800 rounded-lg p-6 transition-all duration-200 ${
-                isCompleted ? 'hover:border-emerald-500/50 cursor-pointer' : 'opacity-60'
+            card.className = `dark:bg-[#0e0e11] bg-zinc-50 border dark:border-zinc-800 border-zinc-200 rounded-lg p-6 transition-all duration-200 ${
+                isCompleted ? 'dark:hover:border-emerald-500/50 hover:border-emerald-500 cursor-pointer' : 'opacity-60'
             }`;
             
             if (isCompleted) {
@@ -169,16 +288,16 @@
             card.innerHTML = `
                 <div class="flex items-start justify-between mb-4">
                     <div>
-                        <div class="text-xl font-bold text-white font-mono">${ticker}</div>
-                        <div class="text-sm text-zinc-400 mt-1">${data.name}</div>
+                        <div class="text-xl font-bold dark:text-white text-black font-mono">${ticker}</div>
+                        <div class="text-sm dark:text-zinc-400 text-zinc-600 mt-1">${data.name}</div>
                     </div>
                     ${isCompleted 
                         ? '<span class="px-2 py-1 bg-emerald-500/10 text-emerald-400 rounded text-xs font-semibold">✓</span>'
-                        : '<span class="px-2 py-1 bg-zinc-800 text-zinc-500 rounded text-xs">Pending</span>'
+                        : '<span class="px-2 py-1 dark:bg-zinc-800 bg-zinc-200 dark:text-zinc-500 text-zinc-600 rounded text-xs">Pending</span>'
                     }
                 </div>
                 <div class="flex items-center gap-2">
-                    <span class="px-2 py-0.5 rounded text-[10px] font-medium bg-zinc-900 border border-zinc-800 text-zinc-400">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-medium dark:bg-zinc-900 bg-zinc-100 border dark:border-zinc-800 border-zinc-300 dark:text-zinc-400 text-zinc-600">
                         ${data.sector}
                     </span>
                 </div>
