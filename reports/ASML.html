@@ -3,53 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASML Holding N.V. - FY2024 Financial Analysis</title>
+    <title>ASML Holdings N.V. - Financial Analysis Report</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
         body {
-            background-color: #18181b;
-            color: #fafafa;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #18181b;
+            color: #e4e4e7;
         }
         .card {
-            background-color: #27272a;
+            background: #27272a;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
             border: 1px solid #3f3f46;
         }
-        .mono {
-            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+        .metric-value {
+            font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            font-weight: 600;
         }
         .grade-badge {
-            padding: 4px 12px;
+            display: inline-block;
+            padding: 6px 12px;
             border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.875rem;
+            font-weight: 700;
+            font-size: 14px;
         }
-        .grade-a-plus, .grade-a { background-color: #16a34a; color: white; }
-        .grade-a-minus { background-color: #22c55e; color: white; }
-        .grade-b-plus, .grade-b { background-color: #eab308; color: black; }
-        .grade-c { background-color: #f59e0b; color: black; }
-        .grade-d, .grade-f { background-color: #dc2626; color: white; }
+        .grade-a { background: #10b981; color: #fff; }
+        .grade-b { background: #f59e0b; color: #000; }
+        .grade-c { background: #f97316; color: #fff; }
+        .grade-d { background: #ef4444; color: #fff; }
+        .grade-f { background: #991b1b; color: #fff; }
         .tooltip-text {
-            border-bottom: 1px dotted #a1a1aa;
+            border-bottom: 1px dotted #9ca3af;
             cursor: help;
-            position: relative;
         }
-        .tooltip-text:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #3f3f46;
-            color: #fafafa;
-            padding: 8px 12px;
-            border-radius: 6px;
-            white-space: nowrap;
-            font-size: 0.75rem;
-            z-index: 10;
-            margin-bottom: 4px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+        h2 { font-size: 24px; font-weight: 700; margin-bottom: 16px; color: #fbbf24; }
+        h3 { font-size: 18px; font-weight: 600; margin-bottom: 12px; }
+        .report-header {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            padding: 32px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
         }
         table {
             width: 100%;
@@ -61,491 +64,597 @@
             border-bottom: 1px solid #3f3f46;
         }
         th {
-            background-color: #3f3f46;
+            background: #3f3f46;
             font-weight: 600;
         }
-        .highlight-row {
-            background-color: #3f3f46;
+        .positive { color: #10b981; }
+        .negative { color: #ef4444; }
+        .investment-box {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 24px;
         }
-        .text-green { color: #22c55e; }
-        .text-red { color: #ef4444; }
     </style>
 </head>
 <body class="p-8">
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-7xl mx-auto">
         <!-- Header -->
-        <div class="mb-8">
-            <h1 class="text-4xl font-bold mb-2">ASML Holding N.V. ($ASML)</h1>
-            <p class="text-xl text-zinc-400">FY2024 Financial Analysis - Fiscal Year Ended December 31, 2024</p>
-            <p class="text-sm text-zinc-500 mt-2">Report Generated: January 14, 2025 | Source: SEC Form 20-F | Framework: Brian Feroldi</p>
-        </div>
-
-        <!-- Overall Grade Card -->
-        <div class="card rounded-lg p-8 mb-8 text-center">
-            <h2 class="text-6xl font-bold mb-4">Overall Grade: <span class="text-green-400">A</span></h2>
-            <p class="text-xl text-zinc-300">World-Class Profitability with Cyclical Growth Headwinds</p>
+        <div class="report-header">
+            <h1>ASML Holding N.V. (NASDAQ: ASML)</h1>
+            <p class="text-lg opacity-90">Comprehensive Financial Analysis Report</p>
+            <p class="text-sm opacity-75 mt-2">Report Date: January 14, 2026 | Source: 20-F Filed March 5, 2025 (FY2024)</p>
         </div>
 
         <!-- Report Card Summary -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <div class="card rounded-lg p-6">
-                <h3 class="text-sm text-zinc-400 mb-2">GROSS MARGIN</h3>
-                <p class="text-3xl font-bold mono mb-2">49.4%</p>
-                <span class="grade-badge grade-a">A</span>
-                <p class="text-xs text-zinc-400 mt-2">↑ from 48.9% (2023)</p>
-            </div>
-            <div class="card rounded-lg p-6">
-                <h3 class="text-sm text-zinc-400 mb-2">OPERATING MARGIN</h3>
-                <p class="text-3xl font-bold mono mb-2">30.2%</p>
-                <span class="grade-badge grade-a-plus">A+</span>
-                <p class="text-xs text-zinc-400 mt-2">↓ from 30.5% (2023)</p>
-            </div>
-            <div class="card rounded-lg p-6">
-                <h3 class="text-sm text-zinc-400 mb-2">NET MARGIN</h3>
-                <p class="text-3xl font-bold mono mb-2">26.8%</p>
-                <span class="grade-badge grade-a-plus">A+</span>
-                <p class="text-xs text-zinc-400 mt-2">↑ from 25.9% (2023)</p>
-            </div>
-            <div class="card rounded-lg p-6">
-                <h3 class="text-sm text-zinc-400 mb-2">REVENUE GROWTH</h3>
-                <p class="text-3xl font-bold mono mb-2">1.0%</p>
-                <span class="grade-badge grade-d">D</span>
-                <p class="text-xs text-zinc-400 mt-2">YoY Growth (Cyclical)</p>
-            </div>
-        </div>
-
-        <!-- Key Metrics Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="card rounded-lg p-6">
-                <h3 class="text-sm text-zinc-400 mb-2">REVENUE (FY2024)</h3>
-                <p class="text-4xl font-bold mono">€28.26B</p>
-                <p class="text-zinc-400 mt-2">$29.10B USD</p>
-                <p class="text-sm text-zinc-500 mt-1">+2.4% YoY (€27.59B in FY2023)</p>
-            </div>
-            <div class="card rounded-lg p-6">
-                <h3 class="text-sm text-zinc-400 mb-2">FREE CASH FLOW</h3>
-                <p class="text-4xl font-bold mono text-green-400">€5.40B</p>
-                <p class="text-zinc-400 mt-2">19.1% FCF Margin</p>
-                <p class="text-sm text-zinc-500 mt-1">Strong cash generation</p>
-            </div>
-            <div class="card rounded-lg p-6">
-                <h3 class="text-sm text-zinc-400 mb-2">DILUTED EPS</h3>
-                <p class="text-4xl font-bold mono">€19.39</p>
-                <p class="text-zinc-400 mt-2">$19.97 USD</p>
-                <p class="text-sm text-zinc-500 mt-1">+4.9% YoY (€18.48 in FY2023)</p>
-            </div>
-        </div>
-
-        <!-- Rule of 40 Card -->
-        <div class="card rounded-lg p-6 mb-8">
-            <h3 class="text-lg font-semibold mb-3">
-                <span class="tooltip-text" data-tooltip="Revenue Growth % + FCF Margin % ≥ 40">Rule of 40</span>
-            </h3>
-            <div class="flex items-center gap-4">
+        <div class="card">
+            <h2>📊 Report Card Summary</h2>
+            <div class="flex items-center justify-between mb-6">
                 <div>
-                    <p class="text-4xl font-bold mono">20.1%</p>
-                    <p class="text-zinc-400 text-sm mt-1">1.0% Growth + 19.1% FCF Margin</p>
+                    <span class="text-5xl font-bold">A</span>
+                    <span class="text-xl ml-2 opacity-75">Overall Grade</span>
                 </div>
-                <span class="grade-badge grade-c">C</span>
+                <div class="text-right">
+                    <div class="text-sm opacity-75">Current Price</div>
+                    <div class="text-3xl font-bold">$1,267.77</div>
+                    <div class="text-sm negative">-0.19% (-$2.39)</div>
+                </div>
             </div>
-            <p class="text-sm text-zinc-400 mt-3">Below the 40% benchmark due to cyclical revenue slowdown, but excellent profitability partially offsets.</p>
+            
+            <div class="metric-grid">
+                <div class="bg-zinc-800 p-4 rounded-lg">
+                    <div class="text-sm opacity-75">Gross Margin</div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="metric-value text-2xl">54.0%</span>
+                        <span class="grade-badge grade-a">A+</span>
+                    </div>
+                </div>
+                <div class="bg-zinc-800 p-4 rounded-lg">
+                    <div class="text-sm opacity-75">Operating Margin</div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="metric-value text-2xl">33.2%</span>
+                        <span class="grade-badge grade-a">A+</span>
+                    </div>
+                </div>
+                <div class="bg-zinc-800 p-4 rounded-lg">
+                    <div class="text-sm opacity-75">Net Margin</div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="metric-value text-2xl">29.4%</span>
+                        <span class="grade-badge grade-a">A+</span>
+                    </div>
+                </div>
+                <div class="bg-zinc-800 p-4 rounded-lg">
+                    <div class="text-sm opacity-75">Revenue Growth (YoY)</div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="metric-value text-2xl">~25%</span>
+                        <span class="grade-badge grade-b">B</span>
+                    </div>
+                </div>
+                <div class="bg-zinc-800 p-4 rounded-lg">
+                    <div class="text-sm opacity-75">Rule of 40</div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="metric-value text-2xl">53.9</span>
+                        <span class="grade-badge grade-a">A+</span>
+                    </div>
+                </div>
+                <div class="bg-zinc-800 p-4 rounded-lg">
+                    <div class="text-sm opacity-75">Free Cash Flow Margin</div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="metric-value text-2xl">28.9%</span>
+                        <span class="grade-badge grade-a">A+</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Margin Evolution Chart -->
-        <div class="card rounded-lg p-6 mb-8">
-            <h3 class="text-lg font-semibold mb-4">Margin Evolution: 2023 vs 2024</h3>
-            <canvas id="marginRadarChart" height="100"></canvas>
+        <!-- Key Metrics -->
+        <div class="card">
+            <h2>🎯 Key Metrics</h2>
+            <div class="metric-grid">
+                <div class="bg-zinc-800 p-6 rounded-lg">
+                    <div class="text-sm opacity-75 mb-2">Revenue (TTM)</div>
+                    <div class="metric-value text-3xl">€32.21B</div>
+                    <div class="text-sm mt-2 positive">≈ $37.82B USD</div>
+                </div>
+                <div class="bg-zinc-800 p-6 rounded-lg">
+                    <div class="text-sm opacity-75 mb-2">Net Income (TTM)</div>
+                    <div class="metric-value text-3xl">€9.46B</div>
+                    <div class="text-sm mt-2">29.4% Net Margin</div>
+                </div>
+                <div class="bg-zinc-800 p-6 rounded-lg">
+                    <div class="text-sm opacity-75 mb-2">Free Cash Flow (TTM)</div>
+                    <div class="metric-value text-3xl">€9.32B</div>
+                    <div class="text-sm mt-2 positive">28.9% FCF Margin</div>
+                </div>
+                <div class="bg-zinc-800 p-6 rounded-lg">
+                    <div class="text-sm opacity-75 mb-2">Market Cap</div>
+                    <div class="metric-value text-3xl">$492.4B</div>
+                    <div class="text-sm mt-2">Global Leader in EUV Lithography</div>
+                </div>
+            </div>
         </div>
 
-        <!-- Quarterly Revenue Progression -->
-        <div class="card rounded-lg p-6 mb-8">
-            <h3 class="text-lg font-semibold mb-4">Quarterly Revenue Progression (2024)</h3>
-            <canvas id="revenueChart" height="80"></canvas>
+        <!-- Q3 FY2025 Highlight -->
+        <div class="card bg-gradient-to-r from-blue-900/50 to-purple-900/50">
+            <h2>📈 Q3 FY2025 Quarterly Performance</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <div class="text-sm opacity-75">Revenue</div>
+                    <div class="metric-value text-2xl">€7.52B</div>
+                </div>
+                <div>
+                    <div class="text-sm opacity-75">Net Income</div>
+                    <div class="metric-value text-2xl">€2.12B</div>
+                    <div class="text-sm positive mt-1">28.2% Margin</div>
+                </div>
+                <div>
+                    <div class="text-sm opacity-75">EPS (Normalized)</div>
+                    <div class="metric-value text-2xl">€5.49</div>
+                    <div class="text-sm positive mt-1">Beat Est. €5.37 ✓</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div class="card">
+                <h3>Path to Profitability</h3>
+                <canvas id="profitabilityChart" height="300"></canvas>
+            </div>
+            <div class="card">
+                <h3>Margin Evolution (YoY)</h3>
+                <canvas id="marginChart" height="300"></canvas>
+            </div>
         </div>
 
         <!-- Income Statement Waterfall -->
-        <div class="card rounded-lg p-6 mb-8">
-            <h3 class="text-lg font-semibold mb-4">FY2024 Income Statement Waterfall</h3>
-            <canvas id="waterfallChart" height="100"></canvas>
+        <div class="card">
+            <h3>Income Statement Breakdown (TTM)</h3>
+            <canvas id="waterfallChart" height="200"></canvas>
         </div>
 
         <!-- Detailed Financial Table -->
-        <div class="card rounded-lg p-6 mb-8">
-            <h3 class="text-lg font-semibold mb-4">Detailed Financial Breakdown - FY2024</h3>
-            <table class="mono text-sm">
+        <div class="card">
+            <h2>💰 Detailed Income Statement (TTM)</h2>
+            <table>
                 <thead>
                     <tr>
                         <th>Line Item</th>
-                        <th class="text-right">Amount (EUR)</th>
-                        <th class="text-right">Amount (USD)</th>
+                        <th class="text-right">Amount (€B)</th>
                         <th class="text-right">% of Revenue</th>
                         <th class="text-center">Grade</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="highlight-row">
-                        <td class="font-semibold">Revenue</td>
-                        <td class="text-right">€28,256M</td>
-                        <td class="text-right">$29,103M</td>
+                    <tr>
+                        <td><strong>Revenue</strong></td>
+                        <td class="text-right metric-value">€32.21</td>
                         <td class="text-right">100.0%</td>
-                        <td class="text-center">—</td>
+                        <td class="text-center">-</td>
                     </tr>
                     <tr>
-                        <td class="pl-4">Cost of Goods Sold</td>
-                        <td class="text-right text-red">(€14,298M)</td>
-                        <td class="text-right text-red">($14,727M)</td>
-                        <td class="text-right">50.6%</td>
-                        <td class="text-center">—</td>
-                    </tr>
-                    <tr class="highlight-row">
-                        <td class="font-semibold">Gross Profit</td>
-                        <td class="text-right text-green">€13,958M</td>
-                        <td class="text-right text-green">$14,377M</td>
-                        <td class="text-right">49.4%</td>
-                        <td class="text-center"><span class="grade-badge grade-a">A</span></td>
+                        <td>Cost of Revenue (COGS)</td>
+                        <td class="text-right metric-value">€14.82</td>
+                        <td class="text-right">46.0%</td>
+                        <td class="text-center">-</td>
                     </tr>
                     <tr>
-                        <td class="pl-4">Research & Development</td>
-                        <td class="text-right text-red">(€3,836M)</td>
-                        <td class="text-right text-red">($3,951M)</td>
-                        <td class="text-right">13.6%</td>
-                        <td class="text-center">—</td>
+                        <td><strong>Gross Profit</strong></td>
+                        <td class="text-right metric-value positive">€17.39</td>
+                        <td class="text-right">54.0%</td>
+                        <td class="text-center"><span class="grade-badge grade-a">A+</span></td>
                     </tr>
                     <tr>
-                        <td class="pl-4">Selling, General & Admin</td>
-                        <td class="text-right text-red">(€1,589M)</td>
-                        <td class="text-right text-red">($1,637M)</td>
-                        <td class="text-right">5.6%</td>
-                        <td class="text-center">—</td>
-                    </tr>
-                    <tr class="highlight-row">
-                        <td class="font-semibold">Operating Income</td>
-                        <td class="text-right text-green">€8,533M</td>
-                        <td class="text-right text-green">$8,789M</td>
-                        <td class="text-right">30.2%</td>
-                        <td class="text-center"><span class="grade-badge grade-a-plus">A+</span></td>
-                    </tr>
-                    <tr class="highlight-row">
-                        <td class="font-semibold">Net Income</td>
-                        <td class="text-right text-green">€7,562M</td>
-                        <td class="text-right text-green">$7,789M</td>
-                        <td class="text-right">26.8%</td>
-                        <td class="text-center"><span class="grade-badge grade-a-plus">A+</span></td>
+                        <td>Research & Development</td>
+                        <td class="text-right metric-value">€3.54</td>
+                        <td class="text-right">11.0%</td>
+                        <td class="text-center">-</td>
                     </tr>
                     <tr>
-                        <td class="font-semibold">Free Cash Flow</td>
-                        <td class="text-right text-green">€5,400M</td>
-                        <td class="text-right text-green">$5,562M</td>
-                        <td class="text-right">19.1%</td>
-                        <td class="text-center"><span class="grade-badge grade-a">A</span></td>
+                        <td>Selling, General & Admin</td>
+                        <td class="text-right metric-value">€3.09</td>
+                        <td class="text-right">9.6%</td>
+                        <td class="text-center">-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total Operating Expenses</strong></td>
+                        <td class="text-right metric-value">€6.63</td>
+                        <td class="text-right">20.6%</td>
+                        <td class="text-center">-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Operating Income</strong></td>
+                        <td class="text-right metric-value positive">€10.76</td>
+                        <td class="text-right">33.4%</td>
+                        <td class="text-center"><span class="grade-badge grade-a">A+</span></td>
+                    </tr>
+                    <tr>
+                        <td>Other Income/Expenses</td>
+                        <td class="text-right metric-value">€0.15</td>
+                        <td class="text-right">0.5%</td>
+                        <td class="text-center">-</td>
+                    </tr>
+                    <tr>
+                        <td>Tax Expense</td>
+                        <td class="text-right metric-value negative">€1.45</td>
+                        <td class="text-right">4.5%</td>
+                        <td class="text-center">-</td>
+                    </tr>
+                    <tr class="bg-zinc-800">
+                        <td><strong>Net Income</strong></td>
+                        <td class="text-right metric-value positive text-xl">€9.46</td>
+                        <td class="text-right text-xl">29.4%</td>
+                        <td class="text-center"><span class="grade-badge grade-a">A+</span></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Valuation Analysis -->
-        <div class="card rounded-lg p-6 mb-8">
-            <h3 class="text-lg font-semibold mb-4">📊 Valuation Analysis</h3>
+        <!-- Valuation Section -->
+        <div class="card">
+            <h2>💎 Valuation Analysis</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div class="bg-zinc-800 rounded-lg p-4">
-                    <p class="text-sm text-zinc-400 mb-1">Current Stock Price</p>
-                    <p class="text-3xl font-bold mono">$665.50</p>
-                    <p class="text-xs text-zinc-500 mt-1">As of Jan 14, 2025</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <h3>Current Valuation Metrics</h3>
+                    <table>
+                        <tr>
+                            <td>Current Price</td>
+                            <td class="text-right metric-value">$1,267.77</td>
+                        </tr>
+                        <tr>
+                            <td>52-Week Range</td>
+                            <td class="text-right metric-value">$578.51 - $1,291.48</td>
+                        </tr>
+                        <tr>
+                            <td>P/E Ratio (TTM)</td>
+                            <td class="text-right metric-value">44.80</td>
+                        </tr>
+                        <tr>
+                            <td>Forward P/E</td>
+                            <td class="text-right metric-value">40.98</td>
+                        </tr>
+                        <tr>
+                            <td>PEG Ratio</td>
+                            <td class="text-right metric-value">2.29</td>
+                        </tr>
+                        <tr>
+                            <td>Price/Sales (TTM)</td>
+                            <td class="text-right metric-value">13.20</td>
+                        </tr>
+                        <tr>
+                            <td>Price/Book (MRQ)</td>
+                            <td class="text-right metric-value">22.25</td>
+                        </tr>
+                        <tr>
+                            <td>EV/EBITDA</td>
+                            <td class="text-right metric-value">34.26</td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="bg-zinc-800 rounded-lg p-4">
-                    <p class="text-sm text-zinc-400 mb-1">Market Cap</p>
-                    <p class="text-3xl font-bold mono">$259.5B</p>
-                    <p class="text-xs text-zinc-500 mt-1">390M shares outstanding</p>
-                </div>
-                <div class="bg-zinc-800 rounded-lg p-4">
-                    <p class="text-sm text-zinc-400 mb-1">Enterprise Value</p>
-                    <p class="text-3xl font-bold mono">$257.8B</p>
-                    <p class="text-xs text-zinc-500 mt-1">Net cash: €1.7B</p>
-                </div>
-            </div>
-
-            <h4 class="font-semibold mb-3 text-zinc-300">Valuation Metrics</h4>
-            <div class="space-y-3">
-                <div class="flex justify-between items-center border-b border-zinc-700 pb-3">
-                    <div>
-                        <p class="font-semibold">
-                            <span class="tooltip-text" data-tooltip="Stock Price / Diluted EPS (TTM)">P/E Ratio (TTM)</span>
-                        </p>
-                        <p class="text-sm text-zinc-400">Trailing Twelve Months</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-2xl font-bold mono">33.3x</p>
-                        <p class="text-xs text-yellow-400">Premium vs. sector avg (25x)</p>
-                    </div>
-                </div>
-
-                <div class="flex justify-between items-center border-b border-zinc-700 pb-3">
-                    <div>
-                        <p class="font-semibold">
-                            <span class="tooltip-text" data-tooltip="P/E Ratio / Revenue Growth %">PEG Ratio</span>
-                        </p>
-                        <p class="text-sm text-zinc-400">P/E to Growth</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-2xl font-bold mono">33.3x</p>
-                        <p class="text-xs text-red-400">High due to cyclical slowdown</p>
-                    </div>
-                </div>
-
-                <div class="flex justify-between items-center border-b border-zinc-700 pb-3">
-                    <div>
-                        <p class="font-semibold">
-                            <span class="tooltip-text" data-tooltip="(Market Cap + Debt - Cash) / Revenue">EV/Sales Ratio</span>
-                        </p>
-                        <p class="text-sm text-zinc-400">Enterprise Value to Revenue</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-2xl font-bold mono">8.9x</p>
-                        <p class="text-xs text-yellow-400">Reflects monopoly position</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-6 bg-zinc-800 rounded-lg p-4">
-                <h4 class="font-semibold mb-2 text-yellow-400">Valuation Assessment: FAIRLY VALUED</h4>
-                <p class="text-sm text-zinc-300 leading-relaxed">
-                    ASML trades at a premium valuation (33x P/E) relative to the semiconductor sector average, 
-                    justified by its monopolistic position in EUV lithography and unmatched competitive moat. 
-                    The elevated PEG ratio reflects cyclical headwinds in 2024, but forward multiples should 
-                    compress as growth reaccelerates in 2025-2026 with AI/HPC chip demand recovery. 
-                    Current price reflects fair value given the unique business quality, though timing matters 
-                    for new positions given semiconductor cycle dynamics.
-                </p>
                 
-                <div class="mt-4 grid grid-cols-2 gap-4">
-                    <div>
-                        <p class="text-sm text-zinc-400">Fair Value Estimate</p>
-                        <p class="text-xl font-bold mono text-green-400">$650 - $750</p>
+                <div>
+                    <h3>Analyst Price Targets</h3>
+                    <div class="bg-zinc-800 p-6 rounded-lg mb-4">
+                        <div class="flex justify-between mb-2">
+                            <span>Low Target:</span>
+                            <span class="metric-value">$844.41</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>Average Target:</span>
+                            <span class="metric-value text-xl">$1,222.16</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>High Target:</span>
+                            <span class="metric-value">$1,521.36</span>
+                        </div>
+                        <div class="flex justify-between mt-4 pt-4 border-t border-zinc-700">
+                            <span><strong>Implied Upside/Downside:</strong></span>
+                            <span class="metric-value text-xl negative">-3.6%</span>
+                        </div>
                     </div>
-                    <div>
-                        <p class="text-sm text-zinc-400">Upside/Downside</p>
-                        <p class="text-xl font-bold mono">-2% to +13%</p>
+                    
+                    <div class="bg-yellow-900/30 p-4 rounded-lg border border-yellow-700">
+                        <div class="font-bold mb-2">⚠️ Valuation Assessment:</div>
+                        <div class="text-sm">
+                            <strong>FAIRLY VALUED to SLIGHTLY OVERVALUED</strong>
+                            <p class="mt-2">Trading at $1,267.77 vs. analyst average of $1,222.16. The stock is priced at a premium P/E of 44.8x and PEG of 2.29, reflecting high growth expectations. While fundamentals are exceptional (A+ across margins), near-term upside may be limited as current price exceeds consensus targets.</p>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Overview -->
+        <div class="card">
+            <h2>🏢 Business Overview</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3>Company Profile</h3>
+                    <table>
+                        <tr>
+                            <td><strong>Industry:</strong></td>
+                            <td>Semiconductor Equipment & Materials</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sector:</strong></td>
+                            <td>Technology</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Headquarters:</strong></td>
+                            <td>Veldhoven, Netherlands</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Founded:</strong></td>
+                            <td>1984</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Employees:</strong></td>
+                            <td>43,461</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Market Cap:</strong></td>
+                            <td class="metric-value">$492.4B</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Competitive Moat</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✓</span>
+                            <span><strong>Monopoly Position:</strong> Only producer of EUV (Extreme Ultraviolet) lithography systems, commanding 90% overall lithography market share</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✓</span>
+                            <span><strong>High Barriers to Entry:</strong> Decades of R&D, complex IP portfolio, and specialized manufacturing knowledge create insurmountable barriers for competitors</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✓</span>
+                            <span><strong>Mission-Critical Technology:</strong> Required for all leading-edge chip production; no viable substitutes exist for most advanced nodes</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✓</span>
+                            <span><strong>Blue-Chip Customers:</strong> TSMC, Samsung, and Intel (top 3 foundries) are primary customers with long-term contracts</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✓</span>
+                            <span><strong>Secular Tailwinds:</strong> AI boom, data center expansion, and IoT growth drive unprecedented demand for advanced semiconductors</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
         <!-- Investment Thesis -->
-        <div class="card rounded-lg p-6 mb-8 border-2 border-green-600">
-            <h3 class="text-xl font-bold mb-4 text-green-400">💡 Investment Thesis: BUY/HOLD</h3>
+        <div class="investment-box">
+            <h2 class="text-white">💡 Investment Thesis</h2>
             
-            <div class="mb-4">
-                <h4 class="font-semibold text-zinc-300 mb-2">Recommendation: BUY on Dips, HOLD Current Positions</h4>
-                <p class="text-zinc-300 leading-relaxed">
-                    ASML is the only supplier of extreme ultraviolet (EUV) lithography systems required for cutting-edge 
-                    semiconductor manufacturing, giving it an unassailable monopoly in the most critical semiconductor 
-                    equipment segment. Despite cyclical headwinds in 2024 (1% revenue growth), the company maintains 
-                    world-class profitability (49% gross margin, 30% operating margin, 27% net margin) and generates 
-                    substantial free cash flow (€5.4B, 19% FCF margin). With AI/HPC chip demand expected to drive 
-                    significant capacity expansion in 2025-2027, ASML is positioned for multi-year growth reacceleration.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div class="bg-zinc-800 rounded-lg p-4">
-                    <h5 class="font-semibold text-green-400 mb-2">✅ Key Catalysts</h5>
-                    <ul class="text-sm text-zinc-300 space-y-1">
-                        <li>• AI/HPC chip boom driving EUV demand (2025-2026)</li>
-                        <li>• Next-gen High-NA EUV systems (€350M ASP)</li>
-                        <li>• China revenue recovery potential if restrictions ease</li>
-                        <li>• Installed base service revenue growth (high margin)</li>
-                        <li>• Strong order backlog visibility (multi-quarter)</li>
-                        <li>• No credible EUV competition (10+ year moat)</li>
-                    </ul>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <div class="bg-white/10 p-4 rounded-lg backdrop-blur">
+                    <div class="text-2xl font-bold mb-2">HOLD / QUALIFIED BUY</div>
+                    <div class="text-sm opacity-90">Rating</div>
                 </div>
-                <div class="bg-zinc-800 rounded-lg p-4">
-                    <h5 class="font-semibold text-red-400 mb-2">⚠️ Key Risks</h5>
-                    <ul class="text-sm text-zinc-300 space-y-1">
-                        <li>• Semiconductor cyclicality (demand volatility)</li>
-                        <li>• China export restrictions (geopolitical risk)</li>
-                        <li>• Customer concentration (TSMC, Samsung, Intel)</li>
-                        <li>• Long lead times create lumpiness in revenue</li>
-                        <li>• Premium valuation limits margin of safety</li>
-                        <li>• EUR/USD currency fluctuations</li>
-                    </ul>
+                <div class="bg-white/10 p-4 rounded-lg backdrop-blur">
+                    <div class="text-2xl font-bold mb-2">$1,350 - $1,500</div>
+                    <div class="text-sm opacity-90">12-Month Price Target Range</div>
+                </div>
+                <div class="bg-white/10 p-4 rounded-lg backdrop-blur">
+                    <div class="text-2xl font-bold mb-2">+6% to +18%</div>
+                    <div class="text-sm opacity-90">Upside Potential</div>
                 </div>
             </div>
 
-            <div class="bg-zinc-800 rounded-lg p-4">
-                <h5 class="font-semibold text-blue-400 mb-2">🎯 Investment Strategy</h5>
-                <p class="text-sm text-zinc-300 leading-relaxed">
-                    <strong>For new investors:</strong> Accumulate on weakness below $620 (20% pullbacks). 
-                    ASML is a long-term compounding machine best held through cycles. 
-                    <strong>For existing holders:</strong> Maintain position through 2024 cyclical trough; 
-                    the monopoly position and profitability profile justify premium valuation. 
-                    Consider trimming only if P/E exceeds 45x or semiconductor leading indicators roll over. 
-                    Target 5-10 year hold given the multi-decade secular tailwinds for advanced semiconductor demand.
+            <div class="bg-white/10 p-6 rounded-lg backdrop-blur mb-4">
+                <h3 class="text-white mb-3">🎯 Investment Summary</h3>
+                <p class="mb-4">
+                    <strong>ASML is the undisputed leader in semiconductor lithography with an unassailable competitive moat.</strong> The company's monopoly position in EUV technology makes it an essential enabler of the AI revolution and next-generation chip manufacturing. Financial performance is exceptional across all metrics (A+ grades in margins and cash flow), with 29.4% net margins and a Rule of 40 score of 53.9.
                 </p>
+                <p class="mb-4">
+                    However, current valuation at 44.8x P/E and trading above analyst consensus suggests limited near-term upside. <strong>Rating: HOLD for current holders, QUALIFIED BUY on any pullback to $1,100-$1,150 range.</strong>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white/10 p-6 rounded-lg backdrop-blur">
+                    <h3 class="text-white mb-3">🚀 Key Catalysts (Bull Case)</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <span class="text-yellow-300 mr-2">▸</span>
+                            <span><strong>AI Infrastructure Boom:</strong> Hyperscalers (Google, Microsoft, Meta, Amazon) investing $200B+ annually in AI data centers, driving insatiable demand for cutting-edge chips</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-300 mr-2">▸</span>
+                            <span><strong>TSMC Expansion:</strong> TSMC's aggressive capex ($30B+ annually) to build new fabs globally, with ASML as sole EUV supplier</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-300 mr-2">▸</span>
+                            <span><strong>Intel Turnaround:</strong> Intel's foundry ambitions ($100B fab investment) could unlock major EUV machine orders</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-300 mr-2">▸</span>
+                            <span><strong>Technology Roadmap:</strong> Next-gen High-NA EUV systems ($380M per unit) entering production, expanding TAM significantly</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-300 mr-2">▸</span>
+                            <span><strong>Pricing Power:</strong> Zero competition in EUV allows for consistent ASP increases (each new machine generation commands premium pricing)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-300 mr-2">▸</span>
+                            <span><strong>Aftermarket Revenue:</strong> High-margin service contracts and spare parts create predictable recurring revenue stream</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white/10 p-6 rounded-lg backdrop-blur">
+                    <h3 class="text-white mb-3">⚠️ Main Risks (Bear Case)</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <span class="text-red-300 mr-2">▸</span>
+                            <span><strong>Valuation Risk:</strong> Trading at 44.8x P/E; any growth deceleration or margin compression could trigger significant multiple contraction</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-300 mr-2">▸</span>
+                            <span><strong>China Exposure:</strong> ~29% of revenue from China; ongoing export restrictions and geopolitical tensions create regulatory headwinds</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-300 mr-2">▸</span>
+                            <span><strong>Cyclical Industry:</strong> Semiconductor equipment spending is notoriously cyclical; downturn risk if AI spending plateaus or recession hits</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-300 mr-2">▸</span>
+                            <span><strong>Customer Concentration:</strong> ~80% of revenue from top 3 customers (TSMC, Samsung, Intel); any significant customer capex cuts directly impact ASML</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-300 mr-2">▸</span>
+                            <span><strong>Execution Risk:</strong> Complex machines with multi-year development cycles; delays in High-NA EUV rollout could disappoint investors</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-300 mr-2">▸</span>
+                            <span><strong>Supply Chain Dependencies:</strong> Relies on 5,000+ suppliers globally; disruptions (similar to COVID) could impact production and delivery timelines</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white/10 p-6 rounded-lg backdrop-blur mt-6">
+                <h3 class="text-white mb-3">📈 Price Target & Recommendation</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <div class="text-sm opacity-75">Fair Value Estimate:</div>
+                        <div class="text-2xl font-bold">$1,350</div>
+                    </div>
+                    <div>
+                        <div class="text-sm opacity-75">Bull Case Target (12M):</div>
+                        <div class="text-2xl font-bold text-green-300">$1,500</div>
+                    </div>
+                    <div>
+                        <div class="text-sm opacity-75">Bear Case Floor:</div>
+                        <div class="text-2xl font-bold text-red-300">$950</div>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-yellow-900/40 rounded-lg border border-yellow-600">
+                    <p class="text-sm">
+                        <strong>Action Plan:</strong> Current holders should HOLD with trailing stop at $1,150. New investors should wait for entry at $1,100-$1,150 (10-15% pullback) for better risk/reward. Dollar-cost averaging acceptable for long-term positions (5+ year horizon). Company remains best pure-play on AI-driven semiconductor demand despite full valuation.
+                    </p>
+                </div>
             </div>
         </div>
 
         <!-- Footer -->
-        <div class="text-center text-sm text-zinc-500 mt-8 pb-8">
-            <p>Data Source: SEC Form 20-F (FY2024) | Analysis Framework: Brian Feroldi</p>
-            <p class="mt-2">Report generated by Clawdbot Financial Analysis | January 14, 2025</p>
-            <p class="mt-2">⚠️ This is not investment advice. Conduct your own research before making investment decisions.</p>
+        <div class="text-center text-sm opacity-50 mt-8 mb-4">
+            <p>Report Generated: January 14, 2026 | Data Sources: SEC 20-F Filing (March 5, 2025), Yahoo Finance, Company Investor Relations</p>
+            <p class="mt-2">Disclaimer: This report is for informational purposes only and should not be considered investment advice. Past performance does not guarantee future results.</p>
         </div>
     </div>
 
     <script>
         // Chart.js Configuration
-        Chart.defaults.color = '#a1a1aa';
+        Chart.defaults.color = '#e4e4e7';
         Chart.defaults.borderColor = '#3f3f46';
-        Chart.defaults.font.family = "'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace";
 
-        // Margin Evolution Radar Chart
-        const marginRadarCtx = document.getElementById('marginRadarChart').getContext('2d');
-        new Chart(marginRadarCtx, {
-            type: 'radar',
+        // Path to Profitability Chart (Quarterly Net Income)
+        const ctx1 = document.getElementById('profitabilityChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
             data: {
-                labels: ['Gross Margin', 'Operating Margin', 'Net Margin', 'FCF Margin', 'Revenue Growth'],
-                datasets: [
-                    {
-                        label: 'FY2023',
-                        data: [48.9, 30.5, 25.9, 18.5, 5.2],
-                        borderColor: '#71717a',
-                        backgroundColor: 'rgba(113, 113, 122, 0.2)',
-                        borderWidth: 2
+                labels: ['Q1 FY24', 'Q2 FY24', 'Q3 FY24', 'Q4 FY24', 'Q1 FY25', 'Q2 FY25', 'Q3 FY25'],
+                datasets: [{
+                    label: 'Net Income (€B)',
+                    data: [1.78, 1.93, 2.08, 1.67, 1.93, 2.68, 2.12],
+                    backgroundColor: function(context) {
+                        const value = context.parsed.y;
+                        return value > 0 ? '#10b981' : '#ef4444';
                     },
-                    {
-                        label: 'FY2024',
-                        data: [49.4, 30.2, 26.8, 19.1, 1.0],
-                        borderColor: '#22c55e',
-                        backgroundColor: 'rgba(34, 197, 94, 0.2)',
-                        borderWidth: 2
-                    }
-                ]
+                    borderWidth: 0
+                }]
             },
             options: {
-                scales: {
-                    r: {
-                        beginAtZero: true,
-                        max: 50,
-                        ticks: {
-                            stepSize: 10
-                        }
-                    }
-                },
+                responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        position: 'top'
+                    legend: { display: false },
+                    title: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { callback: value => '€' + value + 'B' },
+                        grid: { color: '#3f3f46' }
+                    },
+                    x: {
+                        grid: { display: false }
                     }
                 }
             }
         });
 
-        // Quarterly Revenue Chart
-        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
-        new Chart(revenueCtx, {
-            type: 'bar',
+        // Margin Evolution Radar Chart
+        const ctx2 = document.getElementById('marginChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'radar',
             data: {
-                labels: ['Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024'],
-                datasets: [{
-                    label: 'Revenue (EUR Millions)',
-                    data: [5290, 6240, 7470, 9262],
-                    backgroundColor: [
-                        '#3b82f6',
-                        '#6366f1',
-                        '#8b5cf6',
-                        '#22c55e'
-                    ],
-                    borderColor: [
-                        '#2563eb',
-                        '#4f46e5',
-                        '#7c3aed',
-                        '#16a34a'
-                    ],
-                    borderWidth: 1
-                }]
+                labels: ['Gross Margin', 'Operating Margin', 'Net Margin', 'FCF Margin', 'R&D Investment'],
+                datasets: [
+                    {
+                        label: 'FY2024',
+                        data: [54.0, 33.4, 29.4, 28.9, 11.0],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'FY2023',
+                        data: [51.3, 30.1, 26.8, 25.2, 10.5],
+                        borderColor: '#f59e0b',
+                        backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                        borderWidth: 2
+                    }
+                ]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 scales: {
-                    y: {
+                    r: {
                         beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return '€' + (value / 1000).toFixed(1) + 'B';
-                            }
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return '€' + context.parsed.y.toLocaleString() + 'M';
-                            }
-                        }
+                        max: 60,
+                        ticks: { stepSize: 10 },
+                        grid: { color: '#3f3f46' }
                     }
                 }
             }
         });
 
         // Income Statement Waterfall Chart
-        const waterfallCtx = document.getElementById('waterfallChart').getContext('2d');
-        new Chart(waterfallCtx, {
+        const ctx3 = document.getElementById('waterfallChart').getContext('2d');
+        new Chart(ctx3, {
             type: 'bar',
             data: {
-                labels: ['Revenue', 'COGS', 'Gross Profit', 'R&D', 'SG&A', 'Operating Income', 'Taxes & Other', 'Net Income'],
+                labels: ['Revenue', 'COGS', 'Gross Profit', 'R&D', 'SG&A', 'Operating Income', 'Tax', 'Net Income'],
                 datasets: [{
-                    label: 'Amount (EUR Millions)',
-                    data: [28256, -14298, 13958, -3836, -1589, 8533, -971, 7562],
+                    label: '€ Billions',
+                    data: [32.21, -14.82, 17.39, -3.54, -3.09, 10.76, -1.45, 9.46],
                     backgroundColor: [
-                        '#3b82f6',
-                        '#ef4444',
-                        '#22c55e',
-                        '#ef4444',
-                        '#ef4444',
-                        '#22c55e',
-                        '#ef4444',
-                        '#10b981'
+                        '#3b82f6', '#ef4444', '#10b981', '#ef4444', '#ef4444', '#10b981', '#ef4444', '#10b981'
                     ],
-                    borderColor: [
-                        '#2563eb',
-                        '#dc2626',
-                        '#16a34a',
-                        '#dc2626',
-                        '#dc2626',
-                        '#16a34a',
-                        '#dc2626',
-                        '#059669'
-                    ],
-                    borderWidth: 1
+                    borderWidth: 0
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 indexAxis: 'y',
+                plugins: {
+                    legend: { display: false }
+                },
                 scales: {
                     x: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return '€' + (value / 1000).toFixed(1) + 'B';
-                            }
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
+                        ticks: { callback: value => '€' + Math.abs(value) + 'B' },
+                        grid: { color: '#3f3f46' }
                     },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                const value = context.parsed.x;
-                                const pct = ((Math.abs(value) / 28256) * 100).toFixed(1);
-                                return '€' + value.toLocaleString() + 'M (' + pct + '% of revenue)';
-                            }
-                        }
+                    y: {
+                        grid: { display: false }
                     }
                 }
             }
