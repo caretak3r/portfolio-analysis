@@ -312,39 +312,9 @@
             <!-- Expense Trend Chart (Visual) -->
             <div class="bg-[#18181b] border border-zinc-800 rounded-lg p-4">
                 <div class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider mb-3">Operating Expense as % of Revenue</div>
-                
-                <div class="space-y-3">
-                    <div>
-                        <div class="flex justify-between text-xs mb-1">
-                            <span class="text-zinc-400">R&D</span>
-                            <span class="text-white font-mono">20.7%</span>
-                        </div>
-                        <div class="w-full bg-zinc-900 rounded-full h-2">
-                            <div class="bg-blue-500 h-2 rounded-full" style="width: 20.7%"></div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div class="flex justify-between text-xs mb-1">
-                            <span class="text-zinc-400">S&M + G&A</span>
-                            <span class="text-white font-mono">56.4%</span>
-                        </div>
-                        <div class="w-full bg-zinc-900 rounded-full h-2">
-                            <div class="bg-amber-500 h-2 rounded-full" style="width: 56.4%"></div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div class="flex justify-between text-xs mb-1">
-                            <span class="text-zinc-400">Total OpEx</span>
-                            <span class="text-white font-mono">77.1%</span>
-                        </div>
-                        <div class="w-full bg-zinc-900 rounded-full h-2">
-                            <div class="bg-red-500 h-2 rounded-full" style="width: 77.1%"></div>
-                        </div>
-                    </div>
+                <div style="position: relative; height: 180px; width: 100%;">
+                    <canvas id="opexChart" style="width: 100%; height: 100%;"></canvas>
                 </div>
-                
                 <div class="text-[10px] text-emerald-500 mt-3">
                     ↓ OpEx as % of revenue declining - strong operating leverage
                 </div>
@@ -435,26 +405,26 @@
             <div class="bg-[#18181b] border border-zinc-800 rounded-lg p-4">
                 <div class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider mb-3">Margin Trajectory Assessment</div>
                 <div class="space-y-2 text-sm">
-                    <div class="flex items-start gap-2">
-                        <span class="text-emerald-500 text-lg">✓</span>
+                    <div class="flex items-start gap-3">
+                        <span class="text-emerald-500 text-base shrink-0 mt-0.5">✓</span>
                         <span class="text-zinc-300">
                             <strong class="text-white">Gross margin stable:</strong> Consistently 76-77%, indicating strong unit economics and pricing power
                         </span>
                     </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-emerald-500 text-lg">✓</span>
+                    <div class="flex items-start gap-3">
+                        <span class="text-emerald-500 text-base shrink-0 mt-0.5">✓</span>
                         <span class="text-zinc-300">
                             <strong class="text-white">Operating margin expanding rapidly:</strong> Improved from -13.6% to -0.4% in 4 quarters (1,320 bps improvement)
                         </span>
                     </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-emerald-500 text-lg">✓</span>
+                    <div class="flex items-start gap-3">
+                        <span class="text-emerald-500 text-base shrink-0 mt-0.5">✓</span>
                         <span class="text-zinc-300">
                             <strong class="text-white">Net margin turned positive:</strong> First GAAP profitable quarter at +1.9%, ahead of guidance
                         </span>
                     </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-blue-500 text-lg">→</span>
+                    <div class="flex items-start gap-3">
+                        <span class="text-blue-500 text-base shrink-0 mt-0.5">→</span>
                         <span class="text-zinc-300">
                             <strong class="text-white">Industry comparison:</strong> Best-in-class gross margin for IoT/Connected Operations platform
                         </span>
@@ -472,37 +442,8 @@
             
             <div class="bg-[#18181b] border border-zinc-800 rounded-lg p-4 mb-4">
                 <div class="text-sm font-semibold text-emerald-500 mb-3">✓ PROFITABILITY ACHIEVED (Q3 FY26)</div>
-                <div class="space-y-3">
-                    <div class="flex items-center gap-4">
-                        <div class="w-24 text-xs text-zinc-500">Q4 FY25</div>
-                        <div class="flex-1 h-2 bg-zinc-900 rounded-full relative">
-                            <div class="absolute top-0 left-0 h-2 bg-red-500 rounded-full" style="width: 30%"></div>
-                            <div class="absolute -top-6 left-[30%] text-xs font-mono text-red-500">-13.6%</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-24 text-xs text-zinc-500">Q1 FY26</div>
-                        <div class="flex-1 h-2 bg-zinc-900 rounded-full relative">
-                            <div class="absolute top-0 left-0 h-2 bg-orange-500 rounded-full" style="width: 45%"></div>
-                            <div class="absolute -top-6 left-[45%] text-xs font-mono text-orange-500">-9.1%</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-24 text-xs text-zinc-500">Q2 FY26</div>
-                        <div class="flex-1 h-2 bg-zinc-900 rounded-full relative">
-                            <div class="absolute top-0 left-0 h-2 bg-amber-500 rounded-full" style="width: 60%"></div>
-                            <div class="absolute -top-6 left-[60%] text-xs font-mono text-amber-500">-6.8%</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-24 text-xs text-zinc-500 font-bold">Q3 FY26</div>
-                        <div class="flex-1 h-2 bg-zinc-900 rounded-full relative">
-                            <div class="absolute top-0 left-0 h-2 bg-emerald-500 rounded-full" style="width: 52%"></div>
-                            <div class="absolute -top-6 left-[52%] text-xs font-mono text-emerald-500 font-bold">-0.4%</div>
-                            <div class="absolute top-0 left-1/2 w-0.5 h-8 bg-emerald-500"></div>
-                            <div class="absolute -top-10 left-1/2 -ml-12 text-xs font-bold text-emerald-500">↑ BREAKEVEN</div>
-                        </div>
-                    </div>
+                <div style="position: relative; height: 200px; width: 100%;">
+                    <canvas id="profitabilityChart" style="width: 100%; height: 100%;"></canvas>
                 </div>
             </div>
 
@@ -540,68 +481,10 @@
         <div class="bg-[#0e0e11] border border-zinc-800 rounded-lg p-5 mb-8">
             <div class="mb-4">
                 <h3 class="text-sm font-semibold text-white mb-1">Margin Evolution</h3>
-                <p class="text-[10px] text-zinc-500 uppercase tracking-wider">Quarterly Margin Trend (Last 5 Quarters)</p>
+                <p class="text-[10px] text-zinc-500 uppercase tracking-wider">Quarterly Margin Trend (Last 4 Quarters)</p>
             </div>
-            
-            <div class="h-64 bg-[#18181b] rounded-lg p-4 flex items-end gap-2">
-                <!-- Q4 FY25 -->
-                <div class="flex-1 flex flex-col justify-end items-center gap-2 h-full">
-                    <div class="text-[10px] text-emerald-500 font-mono">76.8%</div>
-                    <div class="w-full bg-emerald-600" style="height: 76.8%"></div>
-                    <div class="text-[10px] text-orange-500 font-mono">-13.6%</div>
-                    <div class="w-full bg-orange-600" style="height: 13.6%"></div>
-                    <div class="text-[10px] text-red-500 font-mono">-11.7%</div>
-                    <div class="w-full bg-red-600" style="height: 11.7%"></div>
-                    <div class="text-[9px] text-zinc-500 mt-2">Q4 25</div>
-                </div>
-                
-                <!-- Q1 FY26 -->
-                <div class="flex-1 flex flex-col justify-end items-center gap-2 h-full">
-                    <div class="text-[10px] text-emerald-500 font-mono">77.3%</div>
-                    <div class="w-full bg-emerald-600" style="height: 77.3%"></div>
-                    <div class="text-[10px] text-orange-500 font-mono">-9.1%</div>
-                    <div class="w-full bg-orange-600" style="height: 9.1%"></div>
-                    <div class="text-[10px] text-red-500 font-mono">-6.0%</div>
-                    <div class="w-full bg-red-600" style="height: 6%"></div>
-                    <div class="text-[9px] text-zinc-500 mt-2">Q1 26</div>
-                </div>
-                
-                <!-- Q2 FY26 -->
-                <div class="flex-1 flex flex-col justify-end items-center gap-2 h-full">
-                    <div class="text-[10px] text-emerald-500 font-mono">76.9%</div>
-                    <div class="w-full bg-emerald-600" style="height: 76.9%"></div>
-                    <div class="text-[10px] text-orange-500 font-mono">-6.8%</div>
-                    <div class="w-full bg-orange-600" style="height: 6.8%"></div>
-                    <div class="text-[10px] text-orange-500 font-mono">-4.3%</div>
-                    <div class="w-full bg-orange-600" style="height: 4.3%"></div>
-                    <div class="text-[9px] text-zinc-500 mt-2">Q2 26</div>
-                </div>
-                
-                <!-- Q3 FY26 -->
-                <div class="flex-1 flex flex-col justify-end items-center gap-2 h-full">
-                    <div class="text-[10px] text-emerald-500 font-mono">76.7%</div>
-                    <div class="w-full bg-emerald-500" style="height: 76.7%"></div>
-                    <div class="text-[10px] text-amber-500 font-mono">-0.4%</div>
-                    <div class="w-full bg-amber-500" style="height: 0.4%"></div>
-                    <div class="text-[10px] text-emerald-500 font-mono font-bold">+1.9%</div>
-                    <div class="w-full bg-emerald-500" style="height: 1.9%"></div>
-                    <div class="text-[9px] text-zinc-500 mt-2 font-bold">Q3 26</div>
-                </div>
-            </div>
-            
-            <div class="flex items-center gap-6 mt-4 text-xs">
-                <div class="flex items-center gap-2">
-                    <div class="w-3 h-3 bg-emerald-600 rounded"></div>
-                    <span class="text-zinc-400">Gross Margin</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <div class="w-3 h-3 bg-amber-600 rounded"></div>
-                    <span class="text-zinc-400">Operating Margin</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <div class="w-3 h-3 bg-blue-600 rounded"></div>
-                    <span class="text-zinc-400">Net Margin</span>
-                </div>
+            <div style="position: relative; height: 250px; width: 100%;">
+                <canvas id="marginChart" style="width: 100%; height: 100%;"></canvas>
             </div>
         </div>
 
@@ -704,43 +587,11 @@
         <div class="bg-[#0e0e11] border border-zinc-800 rounded-lg p-5 mb-8">
             <div class="mb-4">
                 <h3 class="text-sm font-semibold text-white mb-1">Revenue Growth Trajectory</h3>
-                <p class="text-[10px] text-zinc-500 uppercase tracking-wider">Quarterly Revenue (Last 5 Quarters)</p>
+                <p class="text-[10px] text-zinc-500 uppercase tracking-wider">Quarterly Revenue (Last 4 Quarters)</p>
             </div>
-            
-            <div class="h-64 bg-[#18181b] rounded-lg p-4 flex items-end gap-4">
-                <!-- Q4 FY25 -->
-                <div class="flex-1 flex flex-col justify-end items-center">
-                    <div class="text-[10px] text-emerald-500 font-mono mb-1">+15%</div>
-                    <div class="w-full bg-gradient-to-t from-blue-600 to-blue-500 rounded-t" style="height: 69%"></div>
-                    <div class="text-xs text-white font-mono mt-2">$346M</div>
-                    <div class="text-[9px] text-zinc-500 mt-1">Q4 25</div>
-                </div>
-                
-                <!-- Q1 FY26 -->
-                <div class="flex-1 flex flex-col justify-end items-center">
-                    <div class="text-[10px] text-emerald-500 font-mono mb-1">+18%</div>
-                    <div class="w-full bg-gradient-to-t from-blue-600 to-blue-500 rounded-t" style="height: 73%"></div>
-                    <div class="text-xs text-white font-mono mt-2">$367M</div>
-                    <div class="text-[9px] text-zinc-500 mt-1">Q1 26</div>
-                </div>
-                
-                <!-- Q2 FY26 -->
-                <div class="flex-1 flex flex-col justify-end items-center">
-                    <div class="text-[10px] text-emerald-500 font-mono mb-1">+25%</div>
-                    <div class="w-full bg-gradient-to-t from-blue-600 to-blue-500 rounded-t" style="height: 78%"></div>
-                    <div class="text-xs text-white font-mono mt-2">$392M</div>
-                    <div class="text-[9px] text-zinc-500 mt-1">Q2 26</div>
-                </div>
-                
-                <!-- Q3 FY26 -->
-                <div class="flex-1 flex flex-col justify-end items-center">
-                    <div class="text-[10px] text-emerald-500 font-mono mb-1 font-bold">+29%</div>
-                    <div class="w-full bg-gradient-to-t from-emerald-600 to-emerald-500 rounded-t" style="height: 83%"></div>
-                    <div class="text-xs text-white font-mono mt-2 font-bold">$416M</div>
-                    <div class="text-[9px] text-zinc-500 mt-1 font-bold">Q3 26</div>
-                </div>
+            <div style="position: relative; height: 250px; width: 100%;">
+                <canvas id="revenueChart" style="width: 100%; height: 100%;"></canvas>
             </div>
-            
             <div class="mt-4 text-xs text-zinc-400">
                 <strong class="text-white">Growth acceleration:</strong> Revenue growth reaccelerated to 29.2% YoY in Q3, 
                 up from 18% in Q1, driven by strong customer adoption and ARR expansion.
@@ -751,53 +602,11 @@
         <div class="bg-[#0e0e11] border border-zinc-800 rounded-lg p-5 mb-8">
             <div class="mb-4">
                 <h3 class="text-sm font-semibold text-white mb-1">Net Income Growth</h3>
-                <p class="text-[10px] text-zinc-500 uppercase tracking-wider">Path to Profitability (Last 5 Quarters)</p>
+                <p class="text-[10px] text-zinc-500 uppercase tracking-wider">Path to Profitability (Last 4 Quarters)</p>
             </div>
-            
-            <div class="h-64 bg-[#18181b] rounded-lg p-4 flex items-center justify-center relative">
-                <!-- Zero line -->
-                <div class="absolute w-full h-px bg-zinc-700 left-0" style="top: 50%"></div>
-                <div class="absolute text-[9px] text-zinc-600 left-2" style="top: calc(50% - 12px)">$0</div>
-                
-                <div class="w-full h-full flex items-center gap-4 px-4">
-                    <!-- Q4 FY25: -$11.2M -->
-                    <div class="flex-1 flex flex-col items-center relative">
-                        <div class="absolute" style="top: calc(50% + 11px)">
-                            <div class="w-full bg-red-600 rounded" style="height: 22px"></div>
-                        </div>
-                        <div class="absolute text-[10px] text-red-500 font-mono" style="top: calc(50% + 36px)">-$11M</div>
-                        <div class="absolute text-[9px] text-zinc-500" style="bottom: 8px">Q4 25</div>
-                    </div>
-                    
-                    <!-- Q1 FY26: -$22.1M -->
-                    <div class="flex-1 flex flex-col items-center relative">
-                        <div class="absolute" style="top: calc(50% + 22px)">
-                            <div class="w-full bg-red-600 rounded" style="height: 44px"></div>
-                        </div>
-                        <div class="absolute text-[10px] text-red-500 font-mono" style="top: calc(50% + 69px)">-$22M</div>
-                        <div class="absolute text-[9px] text-zinc-500" style="bottom: 8px">Q1 26</div>
-                    </div>
-                    
-                    <!-- Q2 FY26: -$16.8M -->
-                    <div class="flex-1 flex flex-col items-center relative">
-                        <div class="absolute" style="top: calc(50% + 17px)">
-                            <div class="w-full bg-orange-600 rounded" style="height: 34px"></div>
-                        </div>
-                        <div class="absolute text-[10px] text-orange-500 font-mono" style="top: calc(50% + 54px)">-$17M</div>
-                        <div class="absolute text-[9px] text-zinc-500" style="bottom: 8px">Q2 26</div>
-                    </div>
-                    
-                    <!-- Q3 FY26: +$7.8M -->
-                    <div class="flex-1 flex flex-col items-center relative">
-                        <div class="absolute" style="bottom: calc(50% + 8px)">
-                            <div class="w-full bg-emerald-500 rounded" style="height: 16px"></div>
-                        </div>
-                        <div class="absolute text-[10px] text-emerald-500 font-mono font-bold" style="top: calc(50% - 30px)">+$8M</div>
-                        <div class="absolute text-[9px] text-white font-bold" style="bottom: 8px">Q3 26</div>
-                    </div>
-                </div>
+            <div style="position: relative; height: 250px; width: 100%;">
+                <canvas id="netIncomeChart" style="width: 100%; height: 100%;"></canvas>
             </div>
-            
             <div class="mt-4 space-y-2 text-xs">
                 <div class="flex items-center gap-2">
                     <div class="w-3 h-3 bg-emerald-500 rounded"></div>
@@ -847,29 +656,29 @@
             <div class="bg-[#18181b] border border-zinc-800 rounded-lg p-4">
                 <div class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider mb-3">Key Observations</div>
                 <div class="space-y-2 text-xs">
-                    <div class="flex items-start gap-2">
-                        <span class="text-emerald-500 text-lg">✓</span>
+                    <div class="flex items-start gap-3">
+                        <span class="text-emerald-500 text-base shrink-0 mt-0.5">✓</span>
                         <span class="text-zinc-300">
                             <strong class="text-white">Sequential improvement:</strong> Net income improved from -$22.1M (Q1) to +$7.8M (Q3), 
                             a $29.9M improvement in just two quarters
                         </span>
                     </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-emerald-500 text-lg">✓</span>
+                    <div class="flex items-start gap-3">
+                        <span class="text-emerald-500 text-base shrink-0 mt-0.5">✓</span>
                         <span class="text-zinc-300">
                             <strong class="text-white">Margin trajectory:</strong> Net margin improved 800+ basis points from Q1 to Q3, 
                             demonstrating powerful operating leverage
                         </span>
                     </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-blue-500 text-lg">→</span>
+                    <div class="flex items-start gap-3">
+                        <span class="text-blue-500 text-base shrink-0 mt-0.5">→</span>
                         <span class="text-zinc-300">
                             <strong class="text-white">Seasonal patterns:</strong> Q1 typically weakest (post-Q4 strength), 
                             Q3/Q4 historically strongest
                         </span>
                     </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-purple-500 text-lg">★</span>
+                    <div class="flex items-start gap-3">
+                        <span class="text-purple-500 text-base shrink-0 mt-0.5">★</span>
                         <span class="text-zinc-300">
                             <strong class="text-white">Sustainability:</strong> Profitability achieved while maintaining 30%+ revenue growth 
                             suggests durable unit economics
@@ -967,36 +776,36 @@
                     </div>
                     
                     <div class="space-y-3 text-sm mb-4">
-                        <div class="flex items-start gap-2">
-                            <span class="text-emerald-500 text-lg shrink-0">✓</span>
+                        <div class="flex items-start gap-3">
+                            <span class="text-emerald-500 text-base shrink-0 mt-0.5">✓</span>
                             <span class="text-zinc-300">
                                 <strong class="text-white">Profitability inflection achieved:</strong> First GAAP profitable quarter (Q3 FY26) demonstrates 
                                 sustainable unit economics and validates the business model. Operating leverage is now clearly visible.
                             </span>
                         </div>
-                        <div class="flex items-start gap-2">
-                            <span class="text-emerald-500 text-lg shrink-0">✓</span>
+                        <div class="flex items-start gap-3">
+                            <span class="text-emerald-500 text-base shrink-0 mt-0.5">✓</span>
                             <span class="text-zinc-300">
                                 <strong class="text-white">Sustained high growth:</strong> 30% revenue growth while achieving profitability is rare. 
                                 $1.67B ARR with strong net retention indicates healthy customer expansion.
                             </span>
                         </div>
-                        <div class="flex items-start gap-2">
-                            <span class="text-emerald-500 text-lg shrink-0">✓</span>
+                        <div class="flex items-start gap-3">
+                            <span class="text-emerald-500 text-base shrink-0 mt-0.5">✓</span>
                             <span class="text-zinc-300">
                                 <strong class="text-white">Best-in-class margins:</strong> 77% gross margin is exceptional for a hardware + software model. 
                                 Path to 20%+ operating margin is clear over the next 2-3 years.
                             </span>
                         </div>
-                        <div class="flex items-start gap-2">
-                            <span class="text-emerald-500 text-lg shrink-0">✓</span>
+                        <div class="flex items-start gap-3">
+                            <span class="text-emerald-500 text-base shrink-0 mt-0.5">✓</span>
                             <span class="text-zinc-300">
                                 <strong class="text-white">Large TAM with limited competition:</strong> Connected Operations platform addresses $50B+ TAM 
                                 with strong competitive moat (network effects, data, switching costs).
                             </span>
                         </div>
-                        <div class="flex items-start gap-2">
-                            <span class="text-emerald-500 text-lg shrink-0">✓</span>
+                        <div class="flex items-start gap-3">
+                            <span class="text-emerald-500 text-base shrink-0 mt-0.5">✓</span>
                             <span class="text-zinc-300">
                                 <strong class="text-white">Rule of 40 candidate:</strong> With 30% growth + near-zero operating margin, Samsara is 
                                 approaching Rule of 40 status. Should achieve 30% growth + 10% margin = 40% within 4 quarters.
@@ -1007,20 +816,20 @@
                     <div class="border-t border-emerald-900 pt-4 mb-4">
                         <div class="text-xs uppercase text-emerald-600 font-semibold tracking-wider mb-2">Key Risks</div>
                         <div class="space-y-2 text-sm">
-                            <div class="flex items-start gap-2">
-                                <span class="text-amber-500">⚠</span>
+                            <div class="flex items-start gap-3">
+                                <span class="text-amber-500 text-base shrink-0 mt-0.5">⚠</span>
                                 <span class="text-zinc-400">
                                     <strong>Valuation risk:</strong> At 12.9x EV/Sales, limited margin of safety for new buyers. Wait for pullbacks.
                                 </span>
                             </div>
-                            <div class="flex items-start gap-2">
-                                <span class="text-amber-500">⚠</span>
+                            <div class="flex items-start gap-3">
+                                <span class="text-amber-500 text-base shrink-0 mt-0.5">⚠</span>
                                 <span class="text-zinc-400">
                                     <strong>Competition:</strong> Established fleet management players could bundle competing solutions.
                                 </span>
                             </div>
-                            <div class="flex items-start gap-2">
-                                <span class="text-amber-500">⚠</span>
+                            <div class="flex items-start gap-3">
+                                <span class="text-amber-500 text-base shrink-0 mt-0.5">⚠</span>
                                 <span class="text-zinc-400">
                                     <strong>Macro sensitivity:</strong> Commercial fleet spending could slow in recession.
                                 </span>
@@ -1060,6 +869,404 @@
             </div>
         </div>
     </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            Chart.defaults.color = '#71717a';
+            Chart.defaults.borderColor = '#27272a';
+            Chart.defaults.font.family = 'Inter, -apple-system, BlinkMacSystemFont, sans-serif';
+
+            // Margin Evolution Chart
+            const marginCtx = document.getElementById('marginChart');
+            if (marginCtx) {
+                new Chart(marginCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Q4 FY25', 'Q1 FY26', 'Q2 FY26', 'Q3 FY26'],
+                        datasets: [
+                            {
+                                label: 'Gross Margin',
+                                data: [76.8, 77.3, 76.9, 76.7],
+                                backgroundColor: 'rgba(16, 185, 129, 0.6)',
+                                borderRadius: 4
+                            },
+                            {
+                                label: 'Operating Margin',
+                                data: [-13.6, -9.1, -6.8, -0.4],
+                                backgroundColor: 'rgba(251, 146, 60, 0.6)',
+                                borderRadius: 4
+                            },
+                            {
+                                label: 'Net Margin',
+                                data: [-11.7, -6.0, -4.3, 1.9],
+                                backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                                borderRadius: 4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: '#71717a',
+                                    font: { size: 11 },
+                                    padding: 15
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(9, 9, 11, 0.95)',
+                                titleColor: '#fff',
+                                bodyColor: '#a1a1aa',
+                                borderColor: '#3f3f46',
+                                borderWidth: 1,
+                                padding: 12,
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': ' + context.parsed.y.toFixed(1) + '%';
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                grid: { color: '#27272a' },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 },
+                                    callback: (value) => value + '%'
+                                }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Revenue Growth Chart
+            const revenueCtx = document.getElementById('revenueChart');
+            if (revenueCtx) {
+                new Chart(revenueCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Q4 FY25', 'Q1 FY26', 'Q2 FY26', 'Q3 FY26'],
+                        datasets: [
+                            {
+                                label: 'Revenue ($M)',
+                                data: [346, 367, 392, 416],
+                                backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                                borderRadius: 4,
+                                yAxisID: 'y'
+                            },
+                            {
+                                label: 'YoY Growth %',
+                                data: [15, 18, 25, 29],
+                                type: 'line',
+                                borderColor: '#10b981',
+                                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                                yAxisID: 'y1',
+                                borderWidth: 3,
+                                tension: 0.4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: '#71717a',
+                                    font: { size: 11 },
+                                    padding: 15
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(9, 9, 11, 0.95)',
+                                titleColor: '#fff',
+                                bodyColor: '#a1a1aa',
+                                borderColor: '#3f3f46',
+                                borderWidth: 1,
+                                padding: 12
+                            }
+                        },
+                        scales: {
+                            y: {
+                                type: 'linear',
+                                position: 'left',
+                                grid: { color: '#27272a' },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 },
+                                    callback: (value) => '$' + value + 'M'
+                                }
+                            },
+                            y1: {
+                                type: 'linear',
+                                position: 'right',
+                                grid: { display: false },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 },
+                                    callback: (value) => value + '%'
+                                },
+                                max: 35
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Net Income Chart
+            const netIncomeCtx = document.getElementById('netIncomeChart');
+            if (netIncomeCtx) {
+                new Chart(netIncomeCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Q4 FY25', 'Q1 FY26', 'Q2 FY26', 'Q3 FY26'],
+                        datasets: [
+                            {
+                                label: 'Net Income ($M)',
+                                data: [-11.2, -22.1, -16.8, 7.8],
+                                backgroundColor: function(context) {
+                                    const value = context.parsed.y;
+                                    return value >= 0 ? 'rgba(16, 185, 129, 0.6)' : 'rgba(239, 68, 68, 0.6)';
+                                },
+                                borderRadius: 4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: '#71717a',
+                                    font: { size: 11 },
+                                    padding: 15
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(9, 9, 11, 0.95)',
+                                titleColor: '#fff',
+                                bodyColor: '#a1a1aa',
+                                borderColor: '#3f3f46',
+                                borderWidth: 1,
+                                padding: 12,
+                                callbacks: {
+                                    label: function(context) {
+                                        return 'Net Income: $' + context.parsed.y.toFixed(1) + 'M';
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                grid: { 
+                                    color: function(context) {
+                                        if (context.tick.value === 0) {
+                                            return '#71717a';
+                                        }
+                                        return '#27272a';
+                                    }
+                                },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 },
+                                    callback: (value) => '$' + value + 'M'
+                                }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Path to Profitability Chart
+            const profitabilityCtx = document.getElementById('profitabilityChart');
+            if (profitabilityCtx) {
+                new Chart(profitabilityCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Q4 FY25', 'Q1 FY26', 'Q2 FY26', 'Q3 FY26'],
+                        datasets: [
+                            {
+                                label: 'Operating Margin %',
+                                data: [-13.6, -9.1, -6.8, -0.4],
+                                borderColor: '#10b981',
+                                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                                borderWidth: 3,
+                                tension: 0.4,
+                                fill: true,
+                                pointBackgroundColor: ['#ef4444', '#fb923c', '#f59e0b', '#10b981'],
+                                pointBorderColor: '#fff',
+                                pointBorderWidth: 2,
+                                pointRadius: 6,
+                                pointHoverRadius: 8
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                backgroundColor: 'rgba(9, 9, 11, 0.95)',
+                                titleColor: '#fff',
+                                bodyColor: '#a1a1aa',
+                                borderColor: '#3f3f46',
+                                borderWidth: 1,
+                                padding: 12,
+                                callbacks: {
+                                    label: function(context) {
+                                        return 'Operating Margin: ' + context.parsed.y.toFixed(1) + '%';
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                grid: { 
+                                    color: function(context) {
+                                        if (context.tick.value === 0) {
+                                            return '#10b981';
+                                        }
+                                        return '#27272a';
+                                    },
+                                    lineWidth: function(context) {
+                                        if (context.tick.value === 0) {
+                                            return 2;
+                                        }
+                                        return 1;
+                                    }
+                                },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 },
+                                    callback: (value) => value + '%'
+                                }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Operating Expense Chart
+            const opexCtx = document.getElementById('opexChart');
+            if (opexCtx) {
+                new Chart(opexCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Q3 FY26'],
+                        datasets: [
+                            {
+                                label: 'R&D',
+                                data: [20.7],
+                                backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                                borderRadius: 4
+                            },
+                            {
+                                label: 'S&M + G&A',
+                                data: [56.4],
+                                backgroundColor: 'rgba(251, 146, 60, 0.6)',
+                                borderRadius: 4
+                            }
+                        ]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: '#71717a',
+                                    font: { size: 11 },
+                                    padding: 15
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(9, 9, 11, 0.95)',
+                                titleColor: '#fff',
+                                bodyColor: '#a1a1aa',
+                                borderColor: '#3f3f46',
+                                borderWidth: 1,
+                                padding: 12,
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': ' + context.parsed.x.toFixed(1) + '% of revenue';
+                                    },
+                                    footer: function(items) {
+                                        let total = 0;
+                                        items.forEach(item => {
+                                            total += item.parsed.x;
+                                        });
+                                        return 'Total OpEx: ' + total.toFixed(1) + '%';
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                stacked: true,
+                                grid: { color: '#27272a' },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 },
+                                    callback: (value) => value + '%'
+                                },
+                                max: 100
+                            },
+                            y: {
+                                stacked: true,
+                                grid: { display: false },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
