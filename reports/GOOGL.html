@@ -1044,12 +1044,25 @@
             type: 'bar',
             data: {
                 labels: ['Q4 FY24', 'Q1 FY25', 'Q2 FY25', 'Q3 FY25'],
-                datasets: [{
-                    label: 'Revenue ($B)',
-                    data: [96.47, 90.23, 96.43, 102.35],
-                    backgroundColor: 'rgba(59, 130, 246, 0.6)',
-                    borderRadius: 4
-                }]
+                datasets: [
+                    {
+                        label: 'Revenue ($B)',
+                        data: [96.47, 90.23, 96.43, 102.35],
+                        backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                        borderRadius: 4,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'YoY Growth %',
+                        data: [6.1, 15.4, 13.6, 13.4],
+                        type: 'line',
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        yAxisID: 'y1',
+                        borderWidth: 3,
+                        tension: 0.4
+                    }
+                ]
             },
             options: {
                 responsive: true,
@@ -1069,23 +1082,30 @@
                         bodyColor: '#a1a1aa',
                         borderColor: '#3f3f46',
                         borderWidth: 1,
-                        padding: 12,
-                        callbacks: {
-                            label: context => {
-                                const yoyGrowth = [6.1, 15.4, 13.6, 13.4][context.dataIndex];
-                                return `$${context.parsed.y.toFixed(2)}B (+${yoyGrowth}% YoY)`;
-                            }
-                        }
+                        padding: 12
                     }
                 },
                 scales: {
                     y: {
+                        type: 'linear',
+                        position: 'left',
                         grid: { color: '#27272a' },
                         ticks: {
                             color: '#52525b',
                             font: { size: 10 },
                             callback: (value) => '$' + value + 'B'
                         }
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        grid: { display: false },
+                        ticks: {
+                            color: '#52525b',
+                            font: { size: 10 },
+                            callback: (value) => value + '%'
+                        },
+                        max: 20
                     },
                     x: {
                         grid: { display: false },
@@ -1104,12 +1124,17 @@
             type: 'bar',
             data: {
                 labels: ['Q4 FY24', 'Q1 FY25', 'Q2 FY25', 'Q3 FY25'],
-                datasets: [{
-                    label: 'Net Income ($B)',
-                    data: [26.54, 34.54, 28.20, 34.98],
-                    backgroundColor: 'rgba(16, 185, 129, 0.6)',
-                    borderRadius: 4
-                }]
+                datasets: [
+                    {
+                        label: 'Net Income ($B)',
+                        data: [26.54, 34.54, 28.20, 34.98],
+                        backgroundColor: function(context) {
+                            const value = context.parsed.y;
+                            return value >= 0 ? 'rgba(16, 185, 129, 0.6)' : 'rgba(239, 68, 68, 0.6)';
+                        },
+                        borderRadius: 4
+                    }
+                ]
             },
             options: {
                 responsive: true,
@@ -1131,16 +1156,22 @@
                         borderWidth: 1,
                         padding: 12,
                         callbacks: {
-                            label: context => {
-                                const yoyGrowth = [3.6, 57.0, 28.5, 31.8][context.dataIndex];
-                                return `$${context.parsed.y.toFixed(2)}B (+${yoyGrowth}% YoY)`;
+                            label: function(context) {
+                                return 'Net Income: $' + context.parsed.y.toFixed(2) + 'B';
                             }
                         }
                     }
                 },
                 scales: {
                     y: {
-                        grid: { color: '#27272a' },
+                        grid: { 
+                            color: function(context) {
+                                if (context.tick.value === 0) {
+                                    return '#71717a';
+                                }
+                                return '#27272a';
+                            }
+                        },
                         ticks: {
                             color: '#52525b',
                             font: { size: 10 },
