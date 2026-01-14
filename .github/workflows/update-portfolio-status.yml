@@ -1,0 +1,92 @@
+name: Update Portfolio Status
+
+on:
+  push:
+    paths:
+      - 'reports/*.html'
+    branches:
+      - main
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update portfolio status
+        run: |
+          #!/bin/bash
+          # Count completed reports
+          REPORT_COUNT=$(ls -1 reports/*.html 2>/dev/null | wc -l)
+          echo "Found $REPORT_COUNT completed reports"
+          
+          # Create list of completed tickers
+          COMPLETED_TICKERS=""
+          for report in reports/*.html; do
+            if [ -f "$report" ]; then
+              ticker=$(basename "$report" .html)
+              COMPLETED_TICKERS="$COMPLETED_TICKERS\"$ticker\", "
+            fi
+          done
+          COMPLETED_TICKERS=${COMPLETED_TICKERS%, } # Remove trailing comma
+          
+          echo "Completed tickers: $COMPLETED_TICKERS"
+          
+          # Update index.html with new status
+          cat > update_status.js << 'EOF'
+          const fs = require('fs');
+          const completedTickers = [COMPLETED_LIST];
+          
+          let indexHtml = fs.readFileSync('index.html', 'utf8');
+          
+          // Update ticker count in header
+          indexHtml = indexHtml.replace(
+            /<span class="px-3 py-1 bg-emerald-500\/10 text-emerald-400 rounded-full font-medium">\d+ Holdings<\/span>/,
+            '<span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full font-medium">21 Holdings</span>'
+          );
+          
+          // Mark completed tickers in JavaScript portfolio object
+          completedTickers.forEach(ticker => {
+            const regex = new RegExp(`"${ticker}":\\s*{([^}]*)}`, 'g');
+            indexHtml = indexHtml.replace(regex, (match, contents) => {
+              if (!contents.includes('"status": "completed"')) {
+                contents = contents.trim();
+                if (contents.endsWith(',')) {
+                  contents = contents.slice(0, -1);
+                }
+                contents += ', "status": "completed"';
+              }
+              return `"${ticker}": {${contents}}`;
+            });
+          });
+          
+          fs.writeFileSync('index.html', indexHtml);
+          console.log('Updated index.html with completed status');
+          EOF
+          
+          # Replace placeholder with actual ticker list
+          sed -i "s/COMPLETED_LIST/$COMPLETED_TICKERS/" update_status.js
+          
+          # Run the update script
+          node update_status.js
+          
+          # Clean up
+          rm update_status.js
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --quiet index.html || echo "changes=true" >> $GITHUB_OUTPUT
+
+      - name: Commit updated index
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git config user.name "Portfolio Bot"
+          git config user.email "bot@silent.engineer"
+          git add index.html
+          git commit -m "Auto-update portfolio status: ${{ github.event.head_commit.message }}"
+          git push
