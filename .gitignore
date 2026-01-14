@@ -1,3 +1,7 @@
 .secrets/
 *_summary.md
 *_analysis_summary.md
+*.backup
+*.log
+*.error
+*SUMMARY*
