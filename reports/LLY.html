@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eli Lilly and Company ($LLY) | FY24 Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+        .tooltip {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #52525b;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 280px;
+            background-color: rgba(9, 9, 11, 0.98);
+            color: #e4e4e7;
+            text-align: left;
+            border-radius: 8px;
+            padding: 12px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -140px;
+            border: 1px solid #3f3f46;
+            font-size: 11px;
+            line-height: 1.5;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #3f3f46 transparent transparent transparent;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .formula {
+            font-family: 'Courier New', monospace;
+            background: #18181b;
+            padding: 4px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            color: #10b981;
+            margin-top: 4px;
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-black text-white antialiased">
+
+    <!-- Header -->
+    <div class="border-b border-zinc-800 bg-zinc-950">
+        <div class="max-w-[1400px] mx-auto px-8 py-6">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded bg-white p-2 flex items-center justify-center shrink-0">
+                    <div class="w-full h-full bg-gradient-to-br from-red-600 to-red-800 rounded flex items-center justify-center text-white font-bold text-lg">
+                        L
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-white leading-none tracking-tight">Eli Lilly and Company</h1>
+                    <div class="flex items-center gap-2 mt-1.5">
+                        <span class="text-xs text-zinc-500 font-mono">$LLY</span>
+                        <span class="text-[10px] text-zinc-700">•</span>
+                        <span class="text-xs text-zinc-500">FY 2024 (Ended December 31, 2024)</span>
+                        <span class="text-[10px] text-zinc-700">•</span>
+                        <span class="text-xs text-emerald-500">✓ GLP-1 Leader</span>
+                    </div>
+                </div>
+                <div class="ml-auto text-right">
+                    <div class="text-xs uppercase text-zinc-600 font-semibold tracking-wider mb-1">Overall Grade</div>
+                    <div class="text-3xl font-bold text-emerald-500 font-mono tracking-tight">A</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-[1400px] mx-auto px-8 py-8">
+        
+        <!-- Grade Cards Grid -->
+        <div class="grid grid-cols-4 gap-4 mb-8">
+            <div class="bg-[#0e0e11] border border-zinc-800 rounded-lg p-5 h-[140px] flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider block mb-2">
+                        <span class="tooltip">Revenue Growth
+                            <span class="tooltiptext">
+                                Measures top-line growth momentum.
+                                <span class="formula">YoY Growth = (Current - Prior) / Prior × 100</span>
+                                <strong>Target:</strong> Mature >10% = A, 5-10% = B
+                            </span>
+                        </span>
+                    </span>
+                    <span class="text-3xl font-bold text-emerald-500 font-mono">A+</span>
+                </div>
+                <div class="border-t border-zinc-800 pt-3 mt-auto">
+                    <span class="text-sm font-mono text-white">+32.0% YoY</span>
+                    <span class="block text-[10px] text-zinc-500 mt-0.5">$45.0B (FY24)</span>
+                </div>
+            </div>
+
+            <div class="bg-[#0e0e11] border border-zinc-800 rounded-lg p-5 h-[140px] flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider block mb-2">
+                        <span class="tooltip">Gross Margin
+                            <span class="tooltiptext">
+                                Efficiency at producing products/services.
+                                <span class="formula">Gross Margin = (Revenue - COGS) / Revenue × 100</span>
+                                <strong>Target:</strong> Pharma >70% = A, 60-70% = B
+                                <br><strong>Calculation:</strong> $36,625M / $45,043M = 81.3%
+                            </span>
+                        </span>
+                    </span>
+                    <span class="text-3xl font-bold text-emerald-500 font-mono">A+</span>
+                </div>
+                <div class="border-t border-zinc-800 pt-3 mt-auto">
+                    <span class="text-sm font-mono text-white">81.3%</span>
+                    <span class="block text-[10px] text-emerald-500 mt-0.5">+2.1pp YoY</span>
+                </div>
+            </div>
+
+            <div class="bg-[#0e0e11] border border-zinc-800 rounded-lg p-5 h-[140px] flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider block mb-2">
+                        <span class="tooltip">Operating Margin
+                            <span class="tooltiptext">
+                                Profitability from core operations.
+                                <span class="formula">Op Margin = Operating Income / Revenue × 100</span>
+                                <strong>Target:</strong> >30% = A+ (World-class)
+                                <br><strong>Calculation:</strong> $12,680M / $45,043M = 28.2%
+                            </span>
+                        </span>
+                    </span>
+                    <span class="text-3xl font-bold text-emerald-500 font-mono">A</span>
+                </div>
+                <div class="border-t border-zinc-800 pt-3 mt-auto">
+                    <span class="text-sm font-mono text-white">28.2%</span>
+                    <span class="block text-[10px] text-emerald-500 mt-0.5">+9.0pp YoY</span>
+                </div>
+            </div>
+
+            <div class="bg-[#0e0e11] border border-zinc-800 rounded-lg p-5 h-[140px] flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider block mb-2">
+                        <span class="tooltip">Net Margin
+                            <span class="tooltiptext">
+                                Bottom-line profitability after everything.
+                                <span class="formula">Net Margin = Net Income / Revenue × 100</span>
+                                <strong>Target:</strong> >20% = A+ (Elite)
+                                <br><strong>Calculation:</strong> $10,590M / $45,043M = 23.5%
+                            </span>
+                        </span>
+                    </span>
+                    <span class="text-3xl font-bold text-emerald-500 font-mono">A+</span>
+                </div>
+                <div class="border-t border-zinc-800 pt-3 mt-auto">
+                    <span class="text-sm font-mono text-white">23.5%</span>
+                    <span class="block text-[10px] text-emerald-500 mt-0.5">+8.1pp YoY</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Metrics Row -->
+        <div class="grid grid-cols-3 gap-4 mb-8">
+            <div class="bg-[#0e0e11] border border-zinc-800 rounded-lg p-5">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider">
+                        <span class="tooltip">Free Cash Flow
+                            <span class="tooltiptext">
+                                Cash generated after operating expenses & capex.
+                                <span class="formula">FCF = Operating Cash Flow - CapEx</span>
+                                <strong>FCF Margin:</strong> FCF / Revenue × 100
+                                <br><strong>Calculation:</strong> $7,917M / $45,043M = 17.6%
+                            </span>
+                        </span>
+                    </span>
+                    <span class="text-[10px] text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded font-mono">+122.5%</span>
+                </div>
+                <div class="text-2xl font-bold font-mono text-white">$7.9B</div>
+                <div class="text-[10px] text-zinc-500 mt-1">17.6% margin</div>
+            </div>
+
+            <div class="bg-[#0e0e11] border border-zinc-800 rounded-lg p-5">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider">
+                        <span class="tooltip">Operating Income
+                            <span class="tooltiptext">
+                                Core business profitability before interest & taxes.
+                                <br>Operating leverage = Revenue growth > OpEx growth
+                                <br><strong>Growth:</strong> +93.5% YoY
+                            </span>
+                        </span>
+                    </span>
+                    <span class="text-[10px] text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded font-mono">+93.5%</span>
+                </div>
+                <div class="text-2xl font-bold font-mono text-white">$12.7B</div>
+                <div class="text-[10px] text-zinc-500 mt-1">Exceptional profitability</div>
+            </div>
+
+            <div class="bg-[#0e0e11] border border-zinc-800 rounded-lg p-5">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider">
+                        <span class="tooltip">EPS (Diluted)
+                            <span class="tooltiptext">
+                                Earnings per share (diluted basis).
+                                <br>Reflects bottom-line profitability per share
+                                <br><strong>Growth:</strong> +102% YoY ($5.80 → $11.71)
+                            </span>
+                        </span>
+                    </span>
+                    <span class="text-[10px] text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded font-mono">+102%</span>
+                </div>
+                <div class="text-2xl font-bold font-mono text-white">$11.71</div>
+                <div class="text-[10px] text-zinc-500 mt-1">904M shares diluted</div>
+            </div>
+        </div>
+
+        <!-- Valuation Section -->
+        <div class="bg-gradient-to-br from-purple-950/50 to-pink-950/30 border border-purple-500/20 rounded-lg p-6 mb-8">
+            <div class="mb-4">
+                <h3 class="text-sm font-semibold text-white uppercase tracking-wider text-purple-300">Valuation Analysis</h3>
+                <p class="text-[10px] text-zinc-500 mt-1">As of January 14, 2026</p>
+            </div>
+            <div class="grid grid-cols-4 gap-4">
+                <div>
+                    <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider block mb-2">
+                        <span class="tooltip">Stock Price
+                            <span class="tooltiptext">
+                                Current trading price as of Jan 14, 2026.
+                                <br>Market cap = Price × Diluted Shares
+                            </span>
+                        </span>
+                    </span>
+                    <div class="text-2xl font-bold font-mono text-white">$788.00</div>
+                    <div class="text-[10px] text-zinc-500 mt-1">Market Cap: $712B</div>
+                </div>
+                <div>
+                    <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider block mb-2">
+                        <span class="tooltip">P/E Ratio (TTM)
+                            <span class="tooltiptext">
+                                Price-to-Earnings ratio.
+                                <span class="formula">P/E = Stock Price / EPS (TTM)</span>
+                                <br><strong>Calculation:</strong> $788.00 / $11.71 = 67.3x
+                                <br><strong>Assessment:</strong> Premium valuation reflecting GLP-1 dominance
+                            </span>
+                        </span>
+                    </span>
+                    <div class="text-2xl font-bold font-mono text-amber-500">67.3x</div>
+                    <div class="text-[10px] text-zinc-500 mt-1">Pharma Avg: 15-25x</div>
+                </div>
+                <div>
+                    <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider block mb-2">
+                        <span class="tooltip">PEG Ratio
+                            <span class="tooltiptext">
+                                P/E relative to growth rate.
+                                <span class="formula">PEG = P/E Ratio / Revenue Growth %</span>
+                                <br><strong>Calculation:</strong> 67.3 / 32.0 = 2.1
+                                <br><strong>Assessment:</strong> >2.0 = Overvalued relative to growth
+                            </span>
+                        </span>
+                    </span>
+                    <div class="text-2xl font-bold font-mono text-orange-500">2.1</div>
+                    <div class="text-[10px] text-zinc-500 mt-1">Target: <1.0</div>
+                </div>
+                <div>
+                    <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider block mb-2">
+                        <span class="tooltip">Valuation
+                            <span class="tooltiptext">
+                                Overall valuation assessment based on P/E, PEG, and growth trajectory.
+                                <br><strong>Verdict:</strong> Trading at premium due to Mounjaro/Zepbound success
+                            </span>
+                        </span>
+                    </span>
+                    <div class="text-xl font-bold text-orange-500 uppercase tracking-tight">OVERVALUED</div>
+                    <div class="text-[10px] text-zinc-500 mt-1">Premium pricing</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <!-- Revenue Growth -->
+            <div class="bg-[#0e0e11] border border-zinc-800 rounded-lg p-5">
+                <div class="mb-4">
+                    <h3 class="text-sm font-semibold text-white mb-1">Revenue Growth Trajectory</h3>
+                    <p class="text-[10px] text-zinc-500 uppercase tracking-wider">Annual Revenue (FY)</p>
+                </div>
+                <div style="position: relative; height: 200px;">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Margin Evolution -->
+            <div class="bg-[#0e0e11] border border-zinc-800 rounded-lg p-5">
+                <div class="mb-4">
+                    <h3 class="text-sm font-semibold text-white mb-1">Margin Evolution</h3>
+                    <p class="text-[10px] text-zinc-500 uppercase tracking-wider">FY23 vs FY24</p>
+                </div>
+                <div style="position: relative; height: 200px;">
+                    <canvas id="marginChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Income Statement Table -->
+        <div class="bg-[#0e0e11] border border-zinc-800 rounded-lg overflow-hidden mb-8">
+            <div class="px-5 py-4 border-b border-zinc-800">
+                <h3 class="text-sm font-semibold text-white">Income Statement</h3>
+                <p class="text-[10px] text-zinc-500 uppercase tracking-wider mt-0.5">Fiscal Year Ended December 31, 2024</p>
+            </div>
+            <table class="w-full text-left text-sm">
+                <thead class="bg-zinc-950 border-b border-zinc-800">
+                    <tr>
+                        <th class="px-5 py-3 text-[10px] uppercase text-zinc-600 font-semibold tracking-wider">Metric</th>
+                        <th class="px-5 py-3 text-right text-[10px] uppercase text-zinc-600 font-semibold tracking-wider">FY24</th>
+                        <th class="px-5 py-3 text-right text-[10px] uppercase text-zinc-600 font-semibold tracking-wider">FY23</th>
+                        <th class="px-5 py-3 text-right text-[10px] uppercase text-zinc-600 font-semibold tracking-wider">% Rev</th>
+                        <th class="px-5 py-3 text-right text-[10px] uppercase text-zinc-600 font-semibold tracking-wider">Grade</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-800">
+                    <tr class="hover:bg-zinc-900/30">
+                        <td class="px-5 py-3 font-medium text-white">Revenue</td>
+                        <td class="px-5 py-3 text-right font-mono text-white">$45,043M</td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">$34,124M</td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">100.0%</td>
+                        <td class="px-5 py-3 text-right">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500 text-white">A+</span>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-zinc-900/30">
+                        <td class="px-5 py-3 text-zinc-400 pl-10">
+                            <span class="tooltip">Cost of Revenue
+                                <span class="tooltiptext">
+                                    Direct costs to manufacture and distribute pharmaceuticals.
+                                    <br>Includes: Manufacturing, materials, royalties.
+                                </span>
+                            </span>
+                        </td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">($8,418M)</td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">($7,082M)</td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">18.7%</td>
+                        <td class="px-5 py-3"></td>
+                    </tr>
+                    <tr class="bg-zinc-900/50">
+                        <td class="px-5 py-3 font-semibold text-white">
+                            <span class="tooltip">Gross Profit
+                                <span class="tooltiptext">
+                                    Revenue minus direct costs.
+                                    <span class="formula">$45,043M - $8,418M = $36,625M</span>
+                                    81.3% margin = Elite for pharma
+                                </span>
+                            </span>
+                        </td>
+                        <td class="px-5 py-3 text-right font-mono text-emerald-500">$36,625M</td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">$27,042M</td>
+                        <td class="px-5 py-3 text-right font-mono text-emerald-500">81.3%</td>
+                        <td class="px-5 py-3 text-right">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500 text-white">A+</span>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-zinc-900/30">
+                        <td class="px-5 py-3 text-zinc-400 pl-10">
+                            <span class="tooltip">R&D
+                                <span class="tooltiptext">
+                                    Research & Development costs.
+                                    <br>Pipeline: Diabetes, oncology, immunology, neuroscience.
+                                    <br>16.0% of revenue - investing in future growth
+                                </span>
+                            </span>
+                        </td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">($7,191M)</td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">($6,931M)</td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">16.0%</td>
+                        <td class="px-5 py-3"></td>
+                    </tr>
+                    <tr class="hover:bg-zinc-900/30">
+                        <td class="px-5 py-3 text-zinc-400 pl-10">
+                            <span class="tooltip">Sales & Marketing
+                                <span class="tooltiptext">
+                                    Sales force, marketing, and commercial operations.
+                                    <br>19.1% of revenue - driving Mounjaro/Zepbound adoption
+                                </span>
+                            </span>
+                        </td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">($8,594M)</td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">($7,403M)</td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">19.1%</td>
+                        <td class="px-5 py-3"></td>
+                    </tr>
+                    <tr class="bg-zinc-900/50">
+                        <td class="px-5 py-3 font-semibold text-white">
+                            <span class="tooltip">Operating Income
+                                <span class="tooltiptext">
+                                    Profit from core operations.
+                                    <span class="formula">Gross Profit - OPEX</span>
+                                    <br>$36,625M - $15,785M = $12,680M (estimated, includes other items)
+                                    <br><strong>28.2% margin = Excellent</strong>
+                                </span>
+                            </span>
+                        </td>
+                        <td class="px-5 py-3 text-right font-mono text-emerald-500">$12,680M</td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">$6,555M</td>
+                        <td class="px-5 py-3 text-right font-mono text-emerald-500">28.2%</td>
+                        <td class="px-5 py-3 text-right">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500 text-white">A</span>
+                        </td>
+                    </tr>
+                    <tr class="bg-zinc-900/50 border-t-2 border-emerald-500/20">
+                        <td class="px-5 py-3 font-bold text-white">
+                            <span class="tooltip">Net Income
+                                <span class="tooltiptext">
+                                    Bottom-line profit after all expenses.
+                                    <span class="formula">Operating Income + Other Income - Taxes</span>
+                                    <br><strong>23.5% net margin = Elite profitability</strong>
+                                </span>
+                            </span>
+                        </td>
+                        <td class="px-5 py-3 text-right font-mono text-emerald-500 font-bold">$10,590M</td>
+                        <td class="px-5 py-3 text-right font-mono text-zinc-400">$5,240M</td>
+                        <td class="px-5 py-3 text-right font-mono text-emerald-500">23.5%</td>
+                        <td class="px-5 py-3 text-right">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500 text-white">A+</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Investment Thesis -->
+        <div class="bg-gradient-to-br from-emerald-950/50 to-green-950/30 border border-emerald-500/20 rounded-lg p-6">
+            <div class="flex items-start gap-4">
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-3">
+                        <h3 class="text-base font-semibold text-white">Investment Thesis</h3>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500 text-white uppercase tracking-wider">HOLD</span>
+                    </div>
+                    <p class="text-sm text-zinc-300 leading-relaxed mb-4">
+                        Eli Lilly is experiencing <strong class="text-emerald-400">exceptional growth</strong> driven by blockbuster GLP-1 drugs Mounjaro (diabetes) 
+                        and Zepbound (weight loss). Revenue surged 32% YoY to $45B, with net income more than doubling (+102%) to $10.6B. The company achieved 
+                        <strong class="text-emerald-400">elite profitability</strong> with 81.3% gross margin, 28.2% operating margin, and 23.5% net margin.
+                    </p>
+                    <p class="text-sm text-zinc-300 leading-relaxed mb-4">
+                        The GLP-1 market is massive and rapidly expanding, with obesity affecting 40%+ of US adults. Lilly is <strong class="text-emerald-400">capacity-constrained</strong> 
+                        rather than demand-constrained, with supply issues limiting growth potential. The company is investing heavily in manufacturing capacity, 
+                        spending $18B+ on new facilities. FCF grew 122% to $7.9B despite these investments.
+                    </p>
+                    <p class="text-sm text-zinc-300 leading-relaxed mb-4">
+                        <strong class="text-amber-400">Valuation Concern:</strong> At 67.3x P/E and PEG ratio of 2.1, LLY is trading at a significant premium 
+                        to historical pharma valuations. While growth justifies some premium, current pricing leaves limited margin of safety. Competition from 
+                        Novo Nordisk (Ozempic/Wegovy) and emerging biosimilars pose risks. Debt increased 54% to $29.5B to fund capacity expansion.
+                    </p>
+                    <p class="text-sm text-zinc-300 leading-relaxed mb-4">
+                        <strong class="text-emerald-400">Recommendation:</strong> <strong>HOLD</strong> for existing positions. The fundamentals are exceptional, 
+                        but valuation is stretched. Wait for a pullback to 50x P/E (~$585) for new entry. Watch for: (1) capacity ramp timelines, 
+                        (2) insurance coverage expansion, (3) clinical trial results for next-gen GLP-1s.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 pt-4 border-t border-zinc-700">
+                        <div>
+                            <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider block mb-1">Next Catalyst</span>
+                            <span class="text-xs font-medium text-white">Q1 2026 Earnings</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider block mb-1">Key Metric to Watch</span>
+                            <span class="text-xs font-medium text-white">Mounjaro/Zepbound revenue</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase text-zinc-600 font-semibold tracking-wider block mb-1">Fair Value Target</span>
+                            <span class="text-xs font-medium text-emerald-400">$585 (50x P/E)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="border-t border-zinc-800 bg-zinc-950 mt-12">
+        <div class="max-w-[1400px] mx-auto px-8 py-4 text-center text-[10px] text-zinc-600">
+            Source: SEC 10-K Filing (February 2025) • Framework: Brian Feroldi • CIK: 0000059478
+        </div>
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script>
+        // Wait for Chart.js to load
+        window.addEventListener('load', function() {
+            Chart.defaults.color = '#71717a';
+            Chart.defaults.borderColor = '#27272a';
+            Chart.defaults.font.family = 'Inter, -apple-system, BlinkMacSystemFont, sans-serif';
+
+            // Revenue Growth
+            const revenueCtx = document.getElementById('revenueChart');
+            if (revenueCtx) {
+                new Chart(revenueCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['FY19', 'FY20', 'FY21', 'FY22', 'FY23', 'FY24'],
+                        datasets: [{
+                            label: 'Revenue',
+                            data: [22320, 24540, 28318, 28541, 34124, 45043],
+                            borderColor: 'rgb(239, 68, 68)',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 4,
+                            pointHoverRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                backgroundColor: 'rgba(9, 9, 11, 0.95)',
+                                titleColor: '#fff',
+                                bodyColor: '#a1a1aa',
+                                borderColor: '#3f3f46',
+                                borderWidth: 1,
+                                padding: 12,
+                                displayColors: false,
+                                callbacks: {
+                                    label: (context) => 'Revenue: $' + (context.parsed.y / 1000).toFixed(1) + 'B'
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                grid: { color: '#27272a' },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 },
+                                    callback: (value) => '$' + (value / 1000).toFixed(0) + 'B'
+                                }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Margin Comparison
+            const marginCtx = document.getElementById('marginChart');
+            if (marginCtx) {
+                new Chart(marginCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Gross Margin', 'Operating Margin', 'Net Margin', 'FCF Margin'],
+                        datasets: [
+                            {
+                                label: 'FY23',
+                                data: [79.2, 19.2, 15.4, 10.4],
+                                backgroundColor: 'rgba(168, 85, 247, 0.6)',
+                                borderRadius: 4
+                            },
+                            {
+                                label: 'FY24',
+                                data: [81.3, 28.2, 23.5, 17.6],
+                                backgroundColor: 'rgba(239, 68, 68, 0.6)',
+                                borderRadius: 4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: '#71717a',
+                                    font: { size: 11 },
+                                    padding: 15
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(9, 9, 11, 0.95)',
+                                titleColor: '#fff',
+                                bodyColor: '#a1a1aa',
+                                borderColor: '#3f3f46',
+                                borderWidth: 1,
+                                padding: 12,
+                                callbacks: {
+                                    label: (context) => context.dataset.label + ': ' + context.parsed.y.toFixed(1) + '%'
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                grid: { color: '#27272a' },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 },
+                                    callback: (value) => value + '%'
+                                }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: {
+                                    color: '#52525b',
+                                    font: { size: 10 }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
