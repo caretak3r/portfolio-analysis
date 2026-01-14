@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSM Financial Analysis Report - FY 2024</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #18181b;
+            color: #fafafa;
+        }
+        .metric-card {
+            background-color: #27272a;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .grade-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        .grade-a { background-color: #22c55e; color: #052e16; }
+        .grade-b { background-color: #eab308; color: #422006; }
+        .grade-c { background-color: #f97316; color: #431407; }
+        .grade-d { background-color: #ef4444; color: #450a0a; }
+        .grade-f { background-color: #991b1b; color: #fef2f2; }
+        .tooltip-text {
+            border-bottom: 2px dotted #a1a1aa;
+            cursor: help;
+            position: relative;
+        }
+        .tooltip-text:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #3f3f46;
+            color: #fafafa;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            white-space: nowrap;
+            font-size: 0.75rem;
+            z-index: 10;
+            margin-bottom: 0.25rem;
+        }
+        .mono-number {
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', monospace;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #3f3f46;
+        }
+        th {
+            font-weight: 600;
+            color: #a1a1aa;
+            font-size: 0.875rem;
+        }
+        .investment-thesis {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body class="p-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-4xl font-bold mb-2">Taiwan Semiconductor Manufacturing Company</h1>
+            <div class="flex items-center gap-4">
+                <span class="text-2xl text-zinc-400">$TSM</span>
+                <span class="text-2xl font-bold text-green-400">$327.05</span>
+                <span class="text-zinc-400">NYSE | FY 2024 (12/31/2024)</span>
+            </div>
+        </div>
+
+        <!-- Overall Grade Card -->
+        <div class="metric-card mb-8">
+            <h2 class="text-2xl font-bold mb-4">Overall Grade: <span class="grade-badge grade-a">A</span></h2>
+            <p class="text-zinc-400 mb-4">World-class semiconductor manufacturer with exceptional profitability and strong growth.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div>
+                    <div class="text-sm text-zinc-400 mb-1">Revenue Growth</div>
+                    <div class="text-2xl font-bold">33.9% <span class="grade-badge grade-a">A+</span></div>
+                </div>
+                <div>
+                    <div class="text-sm text-zinc-400 mb-1">Gross Margin</div>
+                    <div class="text-2xl font-bold">56.1% <span class="grade-badge grade-b">B</span></div>
+                </div>
+                <div>
+                    <div class="text-sm text-zinc-400 mb-1">Operating Margin</div>
+                    <div class="text-2xl font-bold">45.7% <span class="grade-badge grade-a">A+</span></div>
+                </div>
+                <div>
+                    <div class="text-sm text-zinc-400 mb-1">Net Margin</div>
+                    <div class="text-2xl font-bold">40.0% <span class="grade-badge grade-a">A+</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Metrics Row -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="metric-card">
+                <h3 class="text-sm text-zinc-400 mb-2">Total Revenue (FY24)</h3>
+                <div class="text-3xl font-bold mono-number">$91.88B</div>
+                <div class="text-green-400 mt-2">↑ 33.9% YoY</div>
+            </div>
+            <div class="metric-card">
+                <h3 class="text-sm text-zinc-400 mb-2">Net Income (FY24)</h3>
+                <div class="text-3xl font-bold mono-number">$36.76B</div>
+                <div class="text-green-400 mt-2">↑ 36.0% YoY</div>
+            </div>
+            <div class="metric-card">
+                <h3 class="text-sm text-zinc-400 mb-2">Diluted EPS (FY24)</h3>
+                <div class="text-3xl font-bold mono-number">$7.18</div>
+                <div class="text-green-400 mt-2">↑ 44.5% YoY</div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="metric-card">
+                <h3 class="text-xl font-bold mb-4">Margin Evolution (YoY Comparison)</h3>
+                <canvas id="marginRadar"></canvas>
+            </div>
+            <div class="metric-card">
+                <h3 class="text-xl font-bold mb-4">Revenue & Profitability Trend</h3>
+                <canvas id="profitabilityChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Financial Breakdown Table -->
+        <div class="metric-card mb-8">
+            <h3 class="text-2xl font-bold mb-4">Income Statement Breakdown</h3>
+            <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Line Item</th>
+                            <th class="text-right">FY 2024 (USD)</th>
+                            <th class="text-right">FY 2023 (USD)</th>
+                            <th class="text-right">% of Revenue</th>
+                            <th class="text-center">Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="font-bold">
+                            <td>Total Revenue</td>
+                            <td class="text-right mono-number">$91.88B</td>
+                            <td class="text-right mono-number">$68.63B</td>
+                            <td class="text-right">100.0%</td>
+                            <td class="text-center"><span class="grade-badge grade-a">A+</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pl-8">Cost of Revenue</td>
+                            <td class="text-right mono-number">$40.32B</td>
+                            <td class="text-right mono-number">$31.32B</td>
+                            <td class="text-right">43.9%</td>
+                            <td class="text-center">-</td>
+                        </tr>
+                        <tr class="font-semibold bg-zinc-800">
+                            <td>
+                                <span class="tooltip-text" data-tooltip="(Gross Profit / Revenue) × 100">Gross Profit</span>
+                            </td>
+                            <td class="text-right mono-number">$51.56B</td>
+                            <td class="text-right mono-number">$37.31B</td>
+                            <td class="text-right">56.1%</td>
+                            <td class="text-center"><span class="grade-badge grade-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pl-8">Operating Expenses</td>
+                            <td class="text-right mono-number">$9.60B</td>
+                            <td class="text-right mono-number">$8.05B</td>
+                            <td class="text-right">10.4%</td>
+                            <td class="text-center">-</td>
+                        </tr>
+                        <tr class="font-semibold bg-zinc-800">
+                            <td>
+                                <span class="tooltip-text" data-tooltip="(Operating Income / Revenue) × 100">Operating Income</span>
+                            </td>
+                            <td class="text-right mono-number">$41.96B</td>
+                            <td class="text-right mono-number">$29.26B</td>
+                            <td class="text-right">45.7%</td>
+                            <td class="text-center"><span class="grade-badge grade-a">A+</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pl-8">Other Income/Expense</td>
+                            <td class="text-right mono-number">$2.66B</td>
+                            <td class="text-right mono-number">$1.84B</td>
+                            <td class="text-right">2.9%</td>
+                            <td class="text-center">-</td>
+                        </tr>
+                        <tr>
+                            <td class="pl-8">Tax Provision</td>
+                            <td class="text-right mono-number">$7.88B</td>
+                            <td class="text-right mono-number">$4.07B</td>
+                            <td class="text-right">8.6%</td>
+                            <td class="text-center">-</td>
+                        </tr>
+                        <tr class="font-bold bg-zinc-800">
+                            <td>
+                                <span class="tooltip-text" data-tooltip="(Net Income / Revenue) × 100">Net Income</span>
+                            </td>
+                            <td class="text-right mono-number">$36.76B</td>
+                            <td class="text-right mono-number">$27.03B</td>
+                            <td class="text-right">40.0%</td>
+                            <td class="text-center"><span class="grade-badge grade-a">A+</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Grading Details -->
+        <div class="metric-card mb-8">
+            <h3 class="text-2xl font-bold mb-4">Detailed Grade Analysis</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                        📈 Growth <span class="grade-badge grade-a">A+</span>
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between">
+                            <span>Revenue Growth (YoY):</span>
+                            <span class="mono-number font-semibold">+33.9%</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>EPS Growth (YoY):</span>
+                            <span class="mono-number font-semibold">+44.5%</span>
+                        </li>
+                        <li class="text-zinc-400">Outstanding growth driven by AI chip demand and advanced node production.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                        💰 Profitability <span class="grade-badge grade-a">A+</span>
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between">
+                            <span>Gross Margin:</span>
+                            <span class="mono-number font-semibold">56.1% (B)</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Operating Margin:</span>
+                            <span class="mono-number font-semibold">45.7% (A+)</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Net Margin:</span>
+                            <span class="mono-number font-semibold">40.0% (A+)</span>
+                        </li>
+                        <li class="text-zinc-400">World-class profitability metrics for a hardware company.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                        💪 Financial Health <span class="grade-badge grade-a">A</span>
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between">
+                            <span>EBITDA (FY24):</span>
+                            <span class="mono-number font-semibold">$66.00B</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Operating Cash Flow:</span>
+                            <span class="mono-number font-semibold">Strong</span>
+                        </li>
+                        <li class="text-zinc-400">Excellent balance sheet with strong cash generation. Minimal debt relative to earnings.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                        🏰 Competitive Moat <span class="grade-badge grade-a">A+</span>
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>✅ Dominant market position (~60% foundry market share)</li>
+                        <li>✅ Technology leadership in advanced nodes (3nm, 2nm)</li>
+                        <li>✅ Unmatched manufacturing scale and expertise</li>
+                        <li>✅ High customer switching costs</li>
+                        <li>✅ Critical supplier for NVIDIA, Apple, AMD</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Valuation Analysis -->
+        <div class="metric-card mb-8">
+            <h3 class="text-2xl font-bold mb-4">Valuation Analysis <span class="grade-badge grade-c">C</span></h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+                <div>
+                    <h4 class="text-sm text-zinc-400 mb-2">P/E Ratio (TTM)</h4>
+                    <div class="text-3xl font-bold mono-number">45.5x</div>
+                    <div class="text-sm text-zinc-400 mt-1">vs Sector Avg: ~25x</div>
+                </div>
+                <div>
+                    <h4 class="text-sm text-zinc-400 mb-2">PEG Ratio</h4>
+                    <div class="text-3xl font-bold mono-number">1.34</div>
+                    <div class="text-sm text-green-400 mt-1">Fair relative to growth</div>
+                </div>
+                <div>
+                    <h4 class="text-sm text-zinc-400 mb-2">Market Cap</h4>
+                    <div class="text-3xl font-bold mono-number">$1.70T</div>
+                    <div class="text-sm text-zinc-400 mt-1">EV/Sales: ~18.5x</div>
+                </div>
+            </div>
+            <div class="bg-zinc-800 rounded-lg p-4">
+                <h4 class="font-semibold mb-2">Valuation Assessment: <span class="text-yellow-400">FAIRLY VALUED to SLIGHTLY OVERVALUED</span></h4>
+                <p class="text-sm text-zinc-400 leading-relaxed">
+                    TSM trades at a premium to semiconductor peers (P/E ~45.5x vs sector ~25x) but is justified by its dominant market position, 
+                    technology leadership, and strong growth trajectory. The PEG ratio of 1.34 suggests reasonable value relative to 34% revenue growth. 
+                    However, the stock has appreciated significantly, and near-term upside may be limited. Current valuation reflects high expectations 
+                    that TSM must continue to meet.
+                </p>
+                <div class="mt-4 grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <span class="font-semibold">Fair Value Estimate:</span>
+                        <span class="mono-number ml-2">$310 - $340</span>
+                    </div>
+                    <div>
+                        <span class="font-semibold">Current Price:</span>
+                        <span class="mono-number ml-2">$327.05</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Thesis -->
+        <div class="investment-thesis">
+            <div class="flex items-start gap-4 mb-4">
+                <div class="text-5xl">🎯</div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-2">Investment Thesis: <span class="text-green-300">HOLD / ACCUMULATE ON DIPS</span></h3>
+                    <div class="grade-badge grade-a">Overall Grade: A</div>
+                </div>
+            </div>
+            
+            <div class="space-y-4 text-lg leading-relaxed">
+                <p>
+                    <strong>Why Hold/Buy:</strong> TSM is the undisputed leader in semiconductor foundry services with an irreplaceable position 
+                    in the global technology supply chain. The company benefits from structural tailwinds including AI chip demand, 
+                    data center expansion, and advanced node migration. With 56% gross margins and 40% net margins on a hardware business, 
+                    TSM demonstrates exceptional operational excellence and pricing power.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div>
+                        <h4 class="font-bold text-xl mb-3 text-green-300">✅ Key Catalysts</h4>
+                        <ul class="space-y-2">
+                            <li>• <strong>AI Boom:</strong> Critical supplier for NVIDIA, AMD AI chips</li>
+                            <li>• <strong>Technology Leadership:</strong> 3nm mass production, 2nm coming 2025</li>
+                            <li>• <strong>US Expansion:</strong> Arizona fabs reduce geopolitical risk</li>
+                            <li>• <strong>Pricing Power:</strong> Can pass costs to customers (Apple, NVIDIA)</li>
+                            <li>• <strong>Margin Expansion:</strong> Advanced nodes command premium pricing</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl mb-3 text-red-300">⚠️ Key Risks</h4>
+                        <ul class="space-y-2">
+                            <li>• <strong>Geopolitical Risk:</strong> Taiwan tensions with China</li>
+                            <li>• <strong>Valuation:</strong> Trading at premium multiples (P/E ~45x)</li>
+                            <li>• <strong>Customer Concentration:</strong> Reliance on Apple, NVIDIA</li>
+                            <li>• <strong>Cyclical Industry:</strong> Semiconductor downturns possible</li>
+                            <li>• <strong>Competition:</strong> Intel, Samsung investing in foundry</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-white bg-opacity-10 rounded-lg p-4">
+                    <h4 class="font-bold text-xl mb-2">💡 Investment Strategy</h4>
+                    <p class="text-base">
+                        <strong>Current Price $327:</strong> Hold existing positions and accumulate on any dips to $290-$310 range. 
+                        TSM is a core long-term holding given its unmatched competitive position, but current valuation offers limited 
+                        margin of safety. Best bought on fear (geopolitical concerns, market corrections) rather than greed. 
+                        Consider trimming on rallies above $360.
+                    </p>
+                </div>
+
+                <div class="mt-4 flex items-center justify-between text-sm border-t border-white border-opacity-20 pt-4">
+                    <div>
+                        <strong>Target Price (12-month):</strong> <span class="mono-number text-2xl ml-2">$360 - $400</span>
+                    </div>
+                    <div>
+                        <strong>Potential Upside:</strong> <span class="text-green-300 text-2xl">+10% to +22%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center text-sm text-zinc-500">
+            <p>Source: SEC Form 20-F filed April 17, 2025 | Yahoo Finance</p>
+            <p class="mt-2">Analysis Framework: Brian Feroldi Income Statement Grading System</p>
+            <p class="mt-1">Generated: January 14, 2026</p>
+        </div>
+    </div>
+
+    <script>
+        // Margin Evolution Radar Chart
+        const radarCtx = document.getElementById('marginRadar').getContext('2d');
+        new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Gross Margin', 'Operating Margin', 'Net Margin', 'Revenue Growth', 'EPS Growth'],
+                datasets: [
+                    {
+                        label: 'FY 2024',
+                        data: [56.1, 45.7, 40.0, 33.9, 44.5],
+                        borderColor: '#22c55e',
+                        backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'FY 2023',
+                        data: [54.4, 42.6, 39.4, 24.8, 28.3],
+                        borderColor: '#eab308',
+                        backgroundColor: 'rgba(234, 179, 8, 0.2)',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 60,
+                        ticks: { color: '#a1a1aa', backdropColor: 'transparent' },
+                        grid: { color: '#3f3f46' },
+                        pointLabels: { color: '#fafafa', font: { size: 12 } }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#fafafa' } }
+                }
+            }
+        });
+
+        // Revenue & Profitability Chart
+        const profitCtx = document.getElementById('profitabilityChart').getContext('2d');
+        new Chart(profitCtx, {
+            type: 'bar',
+            data: {
+                labels: ['FY 2021', 'FY 2022', 'FY 2023', 'FY 2024'],
+                datasets: [
+                    {
+                        label: 'Revenue ($B)',
+                        data: [50.4, 71.8, 68.6, 91.9],
+                        backgroundColor: '#3b82f6',
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'Net Income ($B)',
+                        data: [18.8, 31.5, 27.0, 36.8],
+                        backgroundColor: '#22c55e',
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'Net Margin (%)',
+                        data: [37.3, 43.9, 39.4, 40.0],
+                        type: 'line',
+                        borderColor: '#eab308',
+                        backgroundColor: 'rgba(234, 179, 8, 0.1)',
+                        yAxisID: 'y1',
+                        borderWidth: 3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                interaction: { mode: 'index', intersect: false },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        ticks: { color: '#a1a1aa' },
+                        grid: { color: '#3f3f46' },
+                        title: { display: true, text: 'USD Billions', color: '#fafafa' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        ticks: { color: '#a1a1aa' },
+                        grid: { display: false },
+                        title: { display: true, text: 'Margin %', color: '#fafafa' },
+                        max: 50
+                    },
+                    x: {
+                        ticks: { color: '#fafafa' },
+                        grid: { color: '#3f3f46' }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#fafafa' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
