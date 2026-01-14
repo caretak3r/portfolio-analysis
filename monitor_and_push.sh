@@ -13,10 +13,15 @@ while true; do
     NEW=$(git status --porcelain reports/*.html 2>/dev/null)
     
     if [ -n "$NEW" ]; then
-        echo "New reports found! Committing..."
+        echo "New reports found! Pulling latest changes..."
+        git pull https://${GITHUB_TOKEN}@github.com/caretak3r/portfolio-analysis.git main 2>&1 | tail -2
+        
+        echo "Committing new reports..."
         git add reports/*.html
         COUNT=$(echo "$NEW" | wc -l | tr -d ' ')
         git commit -m "Add $COUNT financial report(s) - $(date +%H:%M)"
+        
+        echo "Pushing to GitHub..."
         git push https://${GITHUB_TOKEN}@github.com/caretak3r/portfolio-analysis.git main 2>&1 | tail -3
         echo "✓ Pushed to GitHub!"
     else
